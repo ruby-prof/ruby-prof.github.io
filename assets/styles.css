@@ -1,0 +1,133 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+h6 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+div.main {
+    margin: 1em 2em;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+p {
+    margin-top: 0.25em;
+}
+
+pre {
+    background-color: #e3e8fa;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    background: #6573aa;
+    padding: 16px;
+    color: white;
+    padding: 0.5em;
+}
+
+li {
+    margin-top: 0.75em;
+}
+
+dt {
+    font-weight: bold;
+    display: list-item;
+    margin-left: 4rem;
+}
+
+dd {
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    margin-left: 5rem;
+}
+
+.header {
+    background-color: #0D2483;
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header h1 {
+    margin-bottom: 0;
+}
+
+.table-header {
+    padding: 3rem 0 1rem;
+}
+
+.table-wrapper {
+    margin: 1rem auto;
+    max-width: 1440px;
+    padding: 4rem 5rem;
+    background: white;
+    border-radius: 0.5rem;
+}
+
+.center {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.layout-right {
+    margin-left: auto;
+}
+
+.text-right {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.timestamp {
+    font-size: 12px;
+    margin-bottom: 1rem;[]
+color: rgba(255, 255, 255, 0.6);
+}
+
+.logo {
+    width: 140px;
+    height: 30px;
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-image: url(ruby-prof-logo.svg);
+}
+
+.ruby-constant   { color: #7fffd4; background: transparent; }
+.ruby-keyword    { color: #00ffff; background: transparent; }
+.ruby-ivar       { color: #eedd82; background: transparent; }
+.ruby-operator   { color: #00ffee; background: transparent; }
+.ruby-identifier { color: #ffdead; background: transparent; }
+.ruby-node       { color: #ffa07a; background: transparent; }
+.ruby-comment    { color: #dc0000; background: transparent; }
+.ruby-regexp     { color: #ffa07a; background: transparent; }
+.ruby-value      { color: #7fffd4; background: transparent; }
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-auto-rows: 2em;
+    grid-gap: .5em;
+}
