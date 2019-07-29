@@ -6,43 +6,43 @@ fn=Array::first
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::find_largest
-33 0
-cfl=
-cfn=Array::first
-calls=1 34
 34 0
 cfl=
+cfn=Array::first
+calls=1 35
+35 0
+cfl=
 cfn=Integer::upto
-calls=1 38
-38 0
+calls=1 39
+39 0
 
 fl=
 fn=Integer::upto
-0 125000
+0 156000
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::is_prime
-18 0
+19 0
 cfl=
 cfn=Integer::upto
-calls=10000 20
-20 125000
+calls=10000 21
+21 156000
 
 fl=
 fn=Array::select
 0 0
 cfl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 cfn=Object::is_prime
-calls=10000 28
-28 125000
+calls=10000 29
+29 156000
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::find_primes
-26 0
+27 0
 cfl=
 cfn=Array::select
-calls=1 27
-27 125000
+calls=1 28
+28 156000
 
 fl=
 fn=Kernel::rand
@@ -53,8 +53,8 @@ fn=Array::each_index
 0 0
 cfl=
 cfn=Kernel::rand
-calls=10000 12
-12 0
+calls=10000 13
+13 0
 
 fl=
 fn=Array::initialize
@@ -70,37 +70,37 @@ calls=1 0
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::make_random_array
-9 0
-cfl=
-cfn=Class::new
-calls=1 10
 10 0
 cfl=
-cfn=Array::each_index
+cfn=Class::new
 calls=1 11
 11 0
+cfl=
+cfn=Array::each_index
+calls=1 12
+12 0
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::run_primes
-47 0
+48 0
 cfl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 cfn=Object::make_random_array
-calls=1 49
-49 0
+calls=1 50
+50 0
 cfl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 cfn=Object::find_primes
-calls=1 52
-52 125000
+calls=1 53
+53 156000
 cfl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 cfn=Object::find_largest
-calls=1 55
-55 0
+calls=1 56
+56 0
 
 fl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 fn=Object::run
-69 0
+71 0
 cfl=C:/msys64/usr/local/src/ruby-prof/test/prime.rb
 cfn=Object::run_primes
-calls=1 69
-69 125000
+calls=1 71
+71 156000
 

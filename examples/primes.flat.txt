@@ -1,23 +1,23 @@
 Measure Mode: wall_time
-Thread ID: 21426400
-Fiber ID: 33322640
-Total: 0.125000
+Thread ID: 21229800
+Fiber ID: 28136440
+Total: 0.156000
 Sort by: self_time
 
  %self      total      self      wait     child     calls  name                           location
-100.00      0.125     0.125     0.000     0.000    10001   Integer#upto                   
+100.00      0.156     0.156     0.000     0.000    10001   Integer#upto                   
   0.00      0.000     0.000     0.000     0.000        1   Array#first                    
-  0.00      0.000     0.000     0.000     0.000        1   Object#find_largest            C:/msys64/usr/local/src/ruby-prof/test/prime.rb:33
-  0.00      0.125     0.000     0.000     0.125    10000   Object#is_prime                C:/msys64/usr/local/src/ruby-prof/test/prime.rb:18
-  0.00      0.125     0.000     0.000     0.125        1   Array#select                   
-  0.00      0.125     0.000     0.000     0.125        1   Object#find_primes             C:/msys64/usr/local/src/ruby-prof/test/prime.rb:26
+  0.00      0.000     0.000     0.000     0.000        1   Object#find_largest            C:/msys64/usr/local/src/ruby-prof/test/prime.rb:34
+  0.00      0.156     0.000     0.000     0.156    10000   Object#is_prime                C:/msys64/usr/local/src/ruby-prof/test/prime.rb:19
+  0.00      0.156     0.000     0.000     0.156        1   Array#select                   
+  0.00      0.156     0.000     0.000     0.156        1   Object#find_primes             C:/msys64/usr/local/src/ruby-prof/test/prime.rb:27
   0.00      0.000     0.000     0.000     0.000    10000   Kernel#rand                    
   0.00      0.000     0.000     0.000     0.000        1   Array#each_index               
   0.00      0.000     0.000     0.000     0.000        1   Array#initialize               
   0.00      0.000     0.000     0.000     0.000        1   Class#new                      
-  0.00      0.000     0.000     0.000     0.000        1   Object#make_random_array       C:/msys64/usr/local/src/ruby-prof/test/prime.rb:9
-  0.00      0.125     0.000     0.000     0.125        1   Object#run_primes              C:/msys64/usr/local/src/ruby-prof/test/prime.rb:47
-  0.00      0.125     0.000     0.000     0.125        1   Object#run                     C:/msys64/usr/local/src/ruby-prof/test/prime.rb:69
+  0.00      0.000     0.000     0.000     0.000        1   Object#make_random_array       C:/msys64/usr/local/src/ruby-prof/test/prime.rb:10
+  0.00      0.156     0.000     0.000     0.156        1   Object#run_primes              C:/msys64/usr/local/src/ruby-prof/test/prime.rb:48
+  0.00      0.156     0.000     0.000     0.156        1   Object#run                     C:/msys64/usr/local/src/ruby-prof/test/prime.rb:71
 
 * recursively called methods
 
