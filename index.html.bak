@@ -201,8 +201,6 @@ result = profile.profile do
         for later analysis. For a list of profiling options, please see the <a
           href="#profiling-options">Profiling Options</a> section.
         <h2><a id="advanced-usage">Advanced Usage</a></h2>
-        <p>This section describes advanced usage of ruby-prof. Additional
-          documentation for every class is also <a href="../doc/index.html">available</a>.</p>
         <h3><a id="profiling-options">Profiling Options</a></h3>
         <p>ruby-prof understands the following options when profiling code:</p>
         <dl>

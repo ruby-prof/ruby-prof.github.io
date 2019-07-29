@@ -63,14 +63,8 @@ dd {
     padding: 1.5rem 2rem;
 }
 
-.header > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.header h1 {
-    margin-bottom: 0;
+.header img {
+    height: 40px;
 }
 
 .table-header {

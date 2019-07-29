@@ -1,0 +1,76 @@
+digraph "Profile" {
+labelloc=t;
+labeljust=l;
+subgraph "Thread 21426400" {
+27580160 [label="first\n(0%)"];
+27580160 -> 27580160 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580180 [label="find_largest\n(0%)"];
+27580180 -> 27580180 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580200 [label="upto\n(100%)"];
+27580200 -> 27580200 [label="10000/10001" fontsize=10 fontcolor="#666666"];
+27580200 -> 27580200 [label="1/10001" fontsize=10 fontcolor="#666666"];
+27580260 [label="is_prime\n(100%)"];
+27580260 -> 27580260 [label="10000/10000" fontsize=10 fontcolor="#666666"];
+27580380 [label="select\n(100%)"];
+27580380 -> 27580380 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580400 [label="find_primes\n(100%)"];
+27580400 -> 27580400 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580480 [label="rand\n(0%)"];
+27580480 -> 27580480 [label="10000/10000" fontsize=10 fontcolor="#666666"];
+27580520 [label="each_index\n(0%)"];
+27580520 -> 27580520 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580640 [label="initialize\n(0%)"];
+27580640 -> 27580640 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580660 [label="new\n(0%)"];
+27580660 -> 27580660 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580720 [label="make_random_array\n(0%)"];
+27580720 -> 27580720 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580740 [label="run_primes\n(100%)"];
+27580740 -> 27580740 [label="1/1" fontsize=10 fontcolor="#666666"];
+27580780 [label="run\n(100%)"];
+27580780 -> 27580780 [label="1/1" fontsize=10 fontcolor="#666666"];
+}
+subgraph cluster_21621600 {
+label = "Object";
+fontcolor = "#666666";
+fontsize = 16;
+color = "#666666";
+27580780;
+27580740;
+27580720;
+27580400;
+27580260;
+27580180;
+}
+subgraph cluster_21621460 {
+label = "Class";
+fontcolor = "#666666";
+fontsize = 16;
+color = "#666666";
+27580660;
+}
+subgraph cluster_21610180 {
+label = "Array";
+fontcolor = "#666666";
+fontsize = 16;
+color = "#666666";
+27580640;
+27580520;
+27580380;
+27580160;
+}
+subgraph cluster_21621220 {
+label = "Kernel";
+fontcolor = "#666666";
+fontsize = 16;
+color = "#666666";
+27580480;
+}
+subgraph cluster_21610420 {
+label = "Integer";
+fontcolor = "#666666";
+fontsize = 16;
+color = "#666666";
+27580200;
+}
+}
