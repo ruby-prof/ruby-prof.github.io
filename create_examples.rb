@@ -4,9 +4,13 @@
 #
 # Source from http://people.cs.uchicago.edu/~bomb154/154/maclabs/profilers-lab/
 
-require 'ruby-prof'
 require 'fileutils'
-require 'ruby-prof/test/prime'
+
+require 'ruby-prof'
+
+gem_path = Gem.loaded_specs['ruby-prof'].full_gem_path
+prime_path = File.join(gem_path, 'test', 'prime.rb')
+require prime_path
 
 # Generate example reports
 def generate_reports(result)
