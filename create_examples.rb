@@ -13,7 +13,12 @@ prime_path = File.join(gem_path, 'test', 'prime.rb')
 require prime_path
 
 # Generate example reports
-def generate_reports(result)
+def generate_timing_reports
+  start = Process.times
+  result = RubyProf.profile do
+    run_primes(10000)
+  end
+
   path = File.join('examples')
   path = File.expand_path(path)
   FileUtils.makedirs(path)
@@ -21,13 +26,25 @@ def generate_reports(result)
   printer.print(:path => path, :profile => 'primes')
 end
 
-def run
-  start = Process.times
-  result = RubyProf.profile do
+def generate_allocation_report
+  result = RubyProf.profile(:measure_mode => RubyProf::ALLOCATIONS, :track_allocations => true) do
     run_primes(10000)
   end
 
-  generate_reports(result)
+  path = File.join('examples')
+  path = File.expand_path(path)
+  FileUtils.makedirs(path)
+
+  printer = RubyProf::GraphHtmlPrinter.new(result)
+  path = File.join(path, 'primes.graph.allocations.html')
+  File.open(path, 'wb') do |file|
+    printer.print(file)
+  end
+end
+
+def run
+  generate_timing_reports
+  generate_allocation_report
 end
 
 run
