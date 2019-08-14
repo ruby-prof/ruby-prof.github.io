@@ -26,7 +26,8 @@
       </nav>
       <div class="main">
         <h1>ruby-prof<span> </span></h1>
-        <p><a href="https://travis-ci.org/ruby-prof/ruby-prof"><img src="https://travis-ci.org/ruby-prof/ruby-prof.png?branch=master"
+        <p><a href="https://travis-ci.org/ruby-prof/ruby-prof"><img src="https://travis-ci.org/ruby-prof/ruby-prof.png?branch=master"
+
               alt="Build Status"></a></p>
         <h2><a id="overview">Overview</a></h2>
         <p>ruby-prof is a profiler for MRI Ruby. Its features include:</p>
@@ -50,7 +51,7 @@
           </li>
         </ul>
         <h2><a id="why-ruby-prof">Why ruby-prof?</a></h2>
-        <p>ruby-prof if helpful if your program is slow and you don't know why.
+        <p>ruby-prof is helpful if your program is slow and you don't know why.
           It can help you track down methods that are either slow, allocate a
           large number of objects or allocate objects with high memory usage.
           Often times the results will be surprising - when profiling what you
@@ -61,7 +62,8 @@
         <ul>
           <li>
             <p>To use ruby-prof you generally need to include a few lines of
-              extra code in your program (although see <a href="#command-line"
+              extra code in your program (although see <a href="#command-line"
+
                 title="Command Line"> command line usage</a>)</p>
           </li>
           <li>
@@ -71,7 +73,8 @@
         </ul>
         <p>Most of the time, these two caveats are acceptable. But if you need
           to determine why a program running in production is slow or hung, a
-          sampling profiler will be a better choice. Excellent choices include <a
+          sampling profiler will be a better choice. Excellent choices include <a
+
             href="https://github.com/tmm1/stackprof">stackprof </a>or <a href="https://rbspy.github.io/">rbspy</a>.</p>
         <p>If you are just interested in memory usage, you may also want to
           checkout the <a href="https://github.com/SamSaffron/memory_profiler">memory_profiler</a>
@@ -79,7 +82,8 @@
         <h2><a id="installation">Installation</a></h2>
         <p>The easiest way to install ruby-prof is by using Ruby Gems. To
           install:</p>
-        <pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span
+        <pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span
+
 class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">prof</span>
 </pre>
         <p>If you are running Linux or Unix you'll need to have a C compiler
@@ -113,30 +117,38 @@ class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span cla
 <span class="ruby-comment"># profile the code</span>
 <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">start</span>
 <span class="ruby-comment"># ... code to profile ...</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+
 class="ruby-identifier">stop</span>
 
 <span class="ruby-comment"># print a flat profile to text</span>
-<span class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
-class="ruby-operator">::</span><span class="ruby-constant">FlatPrinter</span>.<span
+<span class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">FlatPrinter</span>.<span
+
 class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+
 class="ruby-constant">STDOUT</span>)
 </pre>
         <p>Alternatively, you can use a block to tell ruby-prof what to profile:</p>
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
 <span class="ruby-comment"># profile the code</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+
 class="ruby-identifier">profile</span> <span class="ruby-keyword">do</span>
   <span class="ruby-comment"># ... code to profile ...</span>
 <span class="ruby-keyword">end</span>
 
 <span class="ruby-comment"># print a graph profile to text</span>
-<span class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
-class="ruby-operator">::</span><span class="ruby-constant">GraphPrinter</span>.<span
+<span class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">GraphPrinter</span>.<span
+
 class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+
 class="ruby-constant">STDOUT</span>, {})
 </pre> ruby-prof also supports pausing and resuming profiling runs.
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
@@ -150,19 +162,22 @@ class="ruby-constant">STDOUT</span>, {})
 
 <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">resume</span>
 <span class="ruby-comment"># ... code to profile ...</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+
 class="ruby-identifier">stop</span>
 </pre>
         <p>Note that resume will only work if start has been called previously.
           In addition, resume can also take a block:</p>
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">resume</span> <span
+<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">resume</span> <span
+
 class="ruby-keyword">do</span>
   <span class="ruby-comment"># ... code to profile...</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+
 class="ruby-identifier">stop</span>
 </pre>
         <p>With this usage, resume will automatically call pause at the end of
@@ -183,7 +198,8 @@ result = profile.profile do
          end</pre>
         Once a profile is completed, you can either generate a <a href="#reports">report
           </a>via a printer or <a href="#saving-results">save</a> the results
-        for later analysis. For a list of profiling options, please see the <a
+        for later analysis. For a list of profiling options, please see the <a
+
           href="#profiling-options">Profiling Options</a> section.
         <h2><a id="advanced-usage">Advanced Usage</a></h2>
         <p>This section describes advanced usage of ruby-prof. Additional
@@ -245,29 +261,41 @@ result = profile.profile do
           </dd>
         </dl>
         <p>To set the measurement mode:</p>
-        <pre class="ruby"><span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
-class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+        <pre class="ruby"><span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
+
+class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+
 class="ruby-constant">WALL_TIME</span>
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
-class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
+
+class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+
 class="ruby-constant">PROCESS_TIME</span>
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
-class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
+
+class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+
 class="ruby-constant">ALLOCATIONS</span>
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
-class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span
+
+class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+
 class="ruby-constant">MEMORY</span>
 </pre>
         <p>The default value is <code>RubyProf::WALL_TIME</code>. You may also
           specify the measure mode by using the <code>RUBY_PROF_MEASURE_MODE</code>
           environment variable: </p>
-        <pre class="ruby"><span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+        <pre class="ruby"><span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+
 class="ruby-identifier">wall</span>
-<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+
 class="ruby-identifier">process</span>
-<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+
 class="ruby-identifier">allocations</span>
-<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+<span class="ruby-identifier">export</span> <span class="ruby-constant">RUBY_PROF_MEASURE_MODE</span>=<span
+
 class="ruby-identifier">memory</span>
 </pre>
         <h3><a id="allocation-tracking">Allocation Tracking</a></h3>
@@ -283,7 +311,8 @@ end</pre>
           high level information about the number of allocations performed in
           each method. In contrast, tracking allocations provides detailed
           information about the type, number, memory usage and location of each
-          allocation. Currently, to see allocations results you must use the <a
+          allocation. Currently, to see allocations results you must use the <a
+
             href="doc/RubyProf/GraphHtmlPrinter.html"><code>RubyProf::GraphHtmlPrinter</code></a>.</p>
         <a id="thread-inclusion-exclusion">
           <h3>Thread Inclusion/Exclusion</h3>
@@ -292,7 +321,7 @@ end</pre>
             tests are running slowly.&nbsp; If you are using minitest, it will
             run your tests in parallel by spawning tens of worker threads (note
             to tell minitest to use a single thread set the N environmental
-            variable like this ENV = “0”). Thus, ruby-prof provides two options
+            variable like this ENV = Â“0Â”). Thus, ruby-prof provides two options
             to specify which threads should be profiled:</p>
           <pre>exclude_threads::
     Array of threads which should not be profiled.
@@ -340,12 +369,17 @@ end
         <p>Once you have completed a profiling run, ruby-prof provides a number
           of reports that you can use to analyze the results. Reports are
           created via the use of printers:</p>
-        <pre class="ruby"><span class="ruby-identifier">profile </span>= <span class="ruby-constant">RubyProf</span>.profile do <br>            ...<br>          end<br><span
-class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
-class="ruby-operator">::</span><span class="ruby-constant">GraphPrinter</span>.<span
+        <pre class="ruby"><span class="ruby-identifier">profile </span>= <span class="ruby-constant">RubyProf</span>.profile do <br>            ...<br>          end<br><span
+
+class="ruby-identifier">printer</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">GraphPrinter</span>.<span
+
 class="ruby-identifier">new</span>(profile)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
-class="ruby-constant">STDOUT</span>, <span class="ruby-value">:min_percent</span> <span
+<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+
+class="ruby-constant">STDOUT</span>, <span class="ruby-value">:min_percent</span> <span
+
 class="ruby-operator">=&gt;</span> <span class="ruby-value">2</span>)
 </pre>
         <p>The first parameter is any writable IO object such as <code>STDOUT</code>
@@ -394,13 +428,19 @@ class="ruby-operator">=&gt;</span> <span class="ruby-value">2</span>)
             run. <code>MultiPrinter</code><span style="font-family: monospace;">
             </span>requires a directory path and a profile basename for the
             files they produce
-            <pre class="ruby"><span class="ruby-identifier">printer</span> = <span
-class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
-class="ruby-constant">MultiPrinter</span>.<span class="ruby-identifier">new</span>(<span
+            <pre class="ruby"><span class="ruby-identifier">printer</span> = <span
+
+class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span
+
+class="ruby-constant">MultiPrinter</span>.<span class="ruby-identifier">new</span>(<span
+
 class="ruby-identifier">result</span>)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
-class="ruby-value">:path</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">"."</span>, <span
-class="ruby-value">:profile</span> <span class="ruby-operator">=&gt;</span> <span
+<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+
+class="ruby-value">:path</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">"."</span>, <span
+
+class="ruby-value">:profile</span> <span class="ruby-operator">=&gt;</span> <span
+
 class="ruby-string">"profile"</span>)
 </pre> </dd>
         </dl>
@@ -427,7 +467,8 @@ class="ruby-string">"profile"</span>)
           </li>
           <li>
             <p>Add the ruby-prof to your gemfile:</p>
-            <pre class="ruby"><span class="ruby-identifier">group</span> <span class="ruby-value">:profile</span> <span
+            <pre class="ruby"><span class="ruby-identifier">group</span> <span class="ruby-value">:profile</span> <span
+
 class="ruby-keyword">do</span>
   <span class="ruby-identifier">gem</span> <span class="ruby-string">'ruby-prof'</span>
 <span class="ruby-keyword">end</span>
@@ -435,10 +476,13 @@ class="ruby-keyword">do</span>
           <li>
             <p>Add the ruby prof rack adapter to your middleware stack. One way
               to do this is by adding the following code to <code>config.ru</code>:</p>
-            <pre class="ruby"><span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span
+            <pre class="ruby"><span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span
+
 class="ruby-identifier">env</span>.<span class="ruby-identifier">profile?</span>
-  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span
-class="ruby-operator">::</span><span class="ruby-constant">RubyProf</span>, <span
+  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">RubyProf</span>, <span
+
 class="ruby-value">:path</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">'./tmp/profile'</span>
 <span class="ruby-keyword">end</span>
 </pre>
