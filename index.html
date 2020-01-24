@@ -434,11 +434,13 @@ class="ruby-keyword">do</span>
 <span class="ruby-keyword">end</span>
 </pre> </li>
           <li>
-            <p>Add the ruby prof rack adapter to your middleware stack. One way
-              to do this is by adding the following code to <code>config.ru</code>:</p>
+            <p>Add the ruby prof rack adapter to your middleware stack. The
+              Rails <a href="https://guides.rubyonrails.org/configuring.html#configuring-middleware"
+                title="Configure Middleware">documentation</a> describes several
+              ways to do this. One way is to add the following code to <code>application.rb</code>:</p>
             <pre class="ruby"><span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span
 class="ruby-identifier">env</span>.<span class="ruby-identifier">profile?</span>
-  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span
+  <code class="ruby plain">config.middleware.use</code> <span class="ruby-constant">Rack</span><span
 class="ruby-operator">::</span><span class="ruby-constant">RubyProf</span>, <span
 class="ruby-value">:path</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">'./tmp/profile'</span>
 <span class="ruby-keyword">end</span>
