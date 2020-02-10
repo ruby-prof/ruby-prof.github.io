@@ -18,7 +18,8 @@
       </nav>
       <div class="main">
         <h1>Architecuture<span> </span></h1>
-        <p><a href="https://travis-ci.org/ruby-prof/ruby-prof"><img src="https://travis-ci.org/ruby-prof/ruby-prof.png?branch=master"
+        <p><a href="https://travis-ci.org/ruby-prof/ruby-prof"><img src="https://travis-ci.org/ruby-prof/ruby-prof.png?branch=master"
+
               alt="Build Status"></a></p>
         <h2><a id="overview">Overview</a></h2>
         <p>ruby-prof is a profiler for MRI Ruby. Its built as a C extension and
@@ -40,12 +41,20 @@
           responsible for managing the memory of its child objects which are C
           structures. When the Profile object goes out of scope, it recursively
           frees all its objects.&nbsp; In the class diagram, this can bee seen
-          by the composition relationships. The owning object is denoted with a
+          via the composition relationships. The owning object is denoted with a
           filled in black diamond. Thus a Profile frees its threads, Threads
-          free their Methods, etc.</p>
-        <p><br>
+          free their CallTrees and Methods, etc.</p>
+        <p>You should always keep a reference to a Profile object so that you can generate profiling
+           reports. However, RubyProf will keep a Profile object alive, even if it has no direct references,
+           as long as there are live references to either a MethodInfo object or a CallTree object. This is
+           done via the GC mark phase. CallTree instances mark their associated MethodInfo instances, and MethodInfo
+           instances in turn mark their owning Profile instance.
         </p>
-        <p><br>
+        <p>Previous versions of RubyProf (before 1.3) would not keep the top level Profile instance alive and instead
+           would detect when the underlying Ruby object was freed. However, this approach could result in
+           crashes if a GC happened just at the wrong time. Specifically, when trying to expose an object such as
+           a CallTree Ruby performs a memory allocation. This allocation could trigger a GC, freeing the top level
+           Profile instance and its associated CallTree. Thus the returned CallTree instance would be invalid.
         </p>
       </div>
     </div>
