@@ -11,13 +11,14 @@
   var index_rel_prefix = "../";
 </script>
 
-<script src="../js/jquery.js"></script>
-<script src="../js/darkfish.js"></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
 
 <link href="../css/fonts.css" rel="stylesheet">
 <link href="../css/rdoc.css" rel="stylesheet">
-
-
 
 
 <body id="top" role="document" class="class">
@@ -56,21 +57,23 @@
 <div class="nav-section">
   <h3>Table of Contents</h3>
 
+
+
   <ul class="link-list" role="directory">
-    <li><a href="#class-RubyProf::Cmd-label-Synopsis">Synopsis</a>
-    <li><a href="#class-RubyProf::Cmd-label-Usage">Usage</a>
+              <li>      <a href="#class-RubyProf::Cmd-label-Synopsis">Synopsis</a>
+          <li>      <a href="#class-RubyProf::Cmd-label-Usage">Usage</a>
+
   </ul>
 </div>
 
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
   <p class="link">Object
-  
 </div>
 
     
@@ -92,81 +95,57 @@
 
 <h2 id="class-RubyProf::Cmd-label-Usage">Usage<span><a href="#class-RubyProf::Cmd-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p>ruby_prof [options] &lt;script.rb&gt; [–] [script-options]</p>
+<p>ruby-prof [options] &lt;script.rb&gt; [–] [profiled-script-command-line-options]</p>
 
 <p>Options:</p>
 
-<pre>-p, --printer=printer          Select a printer:
-                                 flat - Prints a flat profile as text (default).
-                                 graph - Prints a graph profile as text.
-                                 graph_html - Prints a graph profile as html.
-                                 call_tree - format for KCacheGrind
-                                 call_stack - prints a HTML visualization of the call tree
-                                 dot - Prints a graph profile as a dot file
-                                 multi - Creates several reports in output directory
-
--m, --min_percent=min_percent  The minimum percent a method must take before
-                               being included in output reports. This option is not supported for call tree reports.
-
--f, --file=path                Output results to a file instead of standard out.
-
---mode=measure_mode            Select what ruby-prof should measure:
-                                 wall - Wall time (default)
-                                 process - Process time
-                                 allocations - Object allocations
-                                 memory - Allocated memory
-
--s, --sort=sort_mode           Select how ruby-prof results should be sorted:
-                                 total - Total time
-                                 self - Self time
-                                 wait - Wait time
-                                 child - Child time
-
---replace-progname             Replace $0 when loading the .rb files.
-
---specialized-instruction      Turn on specified instruction.
-
--v                             Show version, set $VERBOSE to true, profile script if option given
-
--d                             Set $DEBUG to true
-
--R, --require-noprof lib       Require a specific library (not profiled)
-
--E, --eval-noprof code         Execute the ruby statements (not profiled)
-
--x, --exclude regexp           Exclude methods by regexp (see method elimination)
-
--X, --exclude-file file        Exclude methods by regexp listed in file (see method elimination)
-
---exclude-common-cycles        Make common iterators like Integer#times appear inlined
-
---exclude-common-callbacks     Make common callbacks invocations like Integer#times appear inlined so you can see call origins in graph
-
--h, --help                     Show help message
-
---version                      Show version</pre>
+<pre>-p, --printer=printer            Select a printer:
+                                   flat - Prints a flat profile as text (default).
+                                   graph - Prints a graph profile as text.
+                                   graph_html - Prints a graph profile as html.
+                                   call_tree - format for KCacheGrind
+                                   call_stack - prints a HTML visualization of the call tree
+                                   dot - Prints a graph profile as a dot file
+                                   multi - Creates several reports in output directory
+-m, --min_percent=min_percent    The minimum percent a method must take before
+                                   being included in output reports.
+                                   This option is not supported for call tree.
+-f, --file=path                  Output results to a file instead of standard out.
+    --mode=measure_mode          Select what ruby-prof should measure:
+                                   wall - Wall time (default).
+                                   process - Process time.
+                                   allocations - Object allocations (requires patched Ruby interpreter).
+                                   memory - Allocated memory in KB (requires patched Ruby interpreter).
+-s, --sort=sort_mode             Select how ruby-prof results should be sorted:
+                                   total - Total time
+                                   self - Self time
+                                   wait - Wait time
+                                   child - Child time
+    --allow_exceptions           Raise exceptions encountered during profiling (true) or suppress them (false)
+-R, --require-noprof=lib         require a specific library (not profiled)
+-E, --eval-noprof=code           execute the ruby statements (not profiled)
+    --exclude=methods    A comma separated list of methods to exclude.
+                                   Specify instance methods via # (Integer#times)
+                                   Specify class methods via . (Integer.superclass)
+    --exclude-common             Remove common methods from the profile
+-h, --help                       Show help message
+-v, --version version            Show version (1.1.0)</pre>
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
 
-    
+
   </section>
-
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

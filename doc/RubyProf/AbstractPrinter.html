@@ -11,13 +11,14 @@
   var index_rel_prefix = "../";
 </script>
 
-<script src="../js/jquery.js"></script>
-<script src="../js/darkfish.js"></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
 
 <link href="../css/fonts.css" rel="stylesheet">
 <link href="../css/rdoc.css" rel="stylesheet">
-
-
 
 
 <body id="top" role="document" class="class">
@@ -56,32 +57,28 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
   <p class="link">Object
-  
 </div>
 
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-c-new">::new</a>
-    
+    <li ><a href="#method-i-filter_by">#filter_by</a>
+    <li ><a href="#method-i-max_percent">#max_percent</a>
     <li ><a href="#method-i-min_percent">#min_percent</a>
-    
     <li ><a href="#method-i-print">#print</a>
-    
     <li ><a href="#method-i-sort_method">#sort_method</a>
-    
     <li ><a href="#method-i-time_format">#time_format</a>
-    
   </ul>
 </div>
 
@@ -99,43 +96,31 @@
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
 
-    
+
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Class Methods</h3>
        </header>
 
-    
       <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(result)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(result)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Create a new printer.</p>
 
 <p>result should be the output generated from a profiling run</p>
-          
-          
 
-          
           <div class="method-source-code" id="new-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
 <span class="line-num">15</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">result</span>)
@@ -143,69 +128,97 @@
 <span class="line-num">17</span>   <span class="ruby-ivar">@output</span> = <span class="ruby-keyword">nil</span>
 <span class="line-num">18</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
+
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-    
-      <div id="method-i-min_percent" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">min_percent</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+      <div id="method-i-filter_by" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">filter_by</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
-          <p>Returns the <a href="AbstractPrinter.html#method-i-min_percent"><code>min_percent</code></a> of total time a method must take to be included in a profiling report</p>
-          
-          
+          <p>Returns the method to filter methods by (when using <a href="AbstractPrinter.html#method-i-min_percent"><code>min_percent</code></a> and <a href="AbstractPrinter.html#method-i-max_percent"><code>max_percent</code></a>)</p>
 
-          
+          <div class="method-source-code" id="filter_by-source">
+            <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
+<span class="line-num">31</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filter_by</span>
+<span class="line-num">32</span>   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:filter_by</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:self_time</span>
+<span class="line-num">33</span> <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-max_percent" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">max_percent</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Returns the <a href="AbstractPrinter.html#method-i-max_percent"><code>max_percent</code></a> of time a method can take to be included in a profiling report</p>
+
+          <div class="method-source-code" id="max_percent-source">
+            <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
+<span class="line-num">26</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">max_percent</span>
+<span class="line-num">27</span>   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:max_percent</span>] <span class="ruby-operator">||</span> <span class="ruby-value">100</span>
+<span class="line-num">28</span> <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-min_percent" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">min_percent</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Returns the <a href="AbstractPrinter.html#method-i-min_percent"><code>min_percent</code></a> of time a method must take to be included in a profiling report</p>
+
           <div class="method-source-code" id="min_percent-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
 <span class="line-num">21</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">min_percent</span>
 <span class="line-num">22</span>   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:min_percent</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
 <span class="line-num">23</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-print" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">print</span><span
-            class="method-args">(output = STDOUT, options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">print</span><span
+              class="method-args">(output = STDOUT, options = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Prints a report to the provided output.</p>
 
 <p>output - Any IO object, including STDOUT or a file. The default value is STDOUT.</p>
@@ -222,103 +235,75 @@
                Available values are :total_time, :self_time,
                :wait_time, :children_time
                Default value is :total_time</pre>
-          
-          
 
-          
           <div class="method-source-code" id="print-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
-<span class="line-num">53</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">print</span>(<span class="ruby-identifier">output</span> = <span class="ruby-constant">STDOUT</span>, <span class="ruby-identifier">options</span> = {})
-<span class="line-num">54</span>   <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">output</span>
-<span class="line-num">55</span>   <span class="ruby-identifier">setup_options</span>(<span class="ruby-identifier">options</span>)
-<span class="line-num">56</span>   <span class="ruby-identifier">print_threads</span>
-<span class="line-num">57</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">63</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">print</span>(<span class="ruby-identifier">output</span> = <span class="ruby-constant">STDOUT</span>, <span class="ruby-identifier">options</span> = {})
+<span class="line-num">64</span>   <span class="ruby-ivar">@output</span> = <span class="ruby-identifier">output</span>
+<span class="line-num">65</span>   <span class="ruby-identifier">setup_options</span>(<span class="ruby-identifier">options</span>)
+<span class="line-num">66</span>   <span class="ruby-identifier">print_threads</span>
+<span class="line-num">67</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-sort_method" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">sort_method</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">sort_method</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Returns how profile data should be sorted</p>
-          
-          
 
-          
           <div class="method-source-code" id="sort_method-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
-<span class="line-num">31</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sort_method</span>
-<span class="line-num">32</span>   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:sort_method</span>]
-<span class="line-num">33</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">41</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sort_method</span>
+<span class="line-num">42</span>   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:sort_method</span>]
+<span class="line-num">43</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-time_format" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">time_format</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">time_format</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Returns the time format used to show when a profile was run</p>
-          
-          
 
-          
           <div class="method-source-code" id="time_format-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/abstract_printer.rb</span>
-<span class="line-num">26</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">time_format</span>
-<span class="line-num">27</span>   <span class="ruby-string">&#39;%A, %B %-d at %l:%M:%S %p (%Z)&#39;</span>
-<span class="line-num">28</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">36</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">time_format</span>
+<span class="line-num">37</span>   <span class="ruby-string">&#39;%A, %B %-d at %l:%M:%S %p (%Z)&#39;</span>
+<span class="line-num">38</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

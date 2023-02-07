@@ -11,13 +11,14 @@
   var index_rel_prefix = "../";
 </script>
 
-<script src="../js/jquery.js"></script>
-<script src="../js/darkfish.js"></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
 
 <link href="../css/fonts.css" rel="stylesheet">
 <link href="../css/rdoc.css" rel="stylesheet">
-
-
 
 
 <body id="top" role="document" class="class">
@@ -56,34 +57,23 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
-  <p class="link">Data
-  
+  <p class="link">Object
 </div>
 
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
-    <li ><a href="#method-i-fiber_id">#fiber_id</a>
-    
-    <li ><a href="#method-i-id">#id</a>
-    
-    <li ><a href="#method-i-methods">#methods</a>
-    
-    <li ><a href="#method-i-root_methods">#root_methods</a>
-    
     <li ><a href="#method-i-total_time">#total_time</a>
-    
     <li ><a href="#method-i-wait_time">#wait_time</a>
-    
   </ul>
 </div>
 
@@ -97,279 +87,81 @@
 
   <section class="description">
     
-<p>The <a href="Thread.html"><code>Thread</code></a> class contains profile results for a single fiber (note a Ruby thread can run multiple fibers). You cannot create an instance of <a href="Thread.html"><code>RubyProf::Thread</code></a>, instead you access it from a <a href="Profile.html"><code>RubyProf::Profile</code></a> object.</p>
-
-<pre>profile = RubyProf::Profile.profile do
-            ...
-          end
-
-profile.threads.each do |thread|
-  thread.root_methods.sort.each do |method|
-    puts method.total_time
-  end
-end</pre>
-
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
 
-    
+
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-    
-      <div id="method-i-fiber_id" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            fiber_id &rarr; number
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Returns the fiber id of this thread.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="fiber_id-source">
-            <pre>static VALUE
-prof_fiber_id(VALUE self)
-{
-    thread_data_t* thread = prof_get_thread(self);
-    return thread-&gt;fiber_id;
-}</pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-id" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            id &rarr; number
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Returns the thread id of this thread.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="id-source">
-            <pre>static VALUE
-prof_thread_id(VALUE self)
-{
-    thread_data_t* thread = prof_get_thread(self);
-    return thread-&gt;thread_id;
-}</pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-methods" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            methods &rarr; [RubyProf::MethodInfo]
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Returns an array of methods that were called from this thread during program execution.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="methods-source">
-            <pre>static VALUE
-prof_thread_methods(VALUE self)
-{
-    thread_data_t* thread = prof_get_thread(self);
-    if (thread-&gt;methods == Qnil)
-    {
-        thread-&gt;methods = rb_ary_new();
-        st_foreach(thread-&gt;method_table, collect_methods, thread-&gt;methods);
-    }
-    return thread-&gt;methods;
-}</pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-root_methods" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">root_methods</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns the root methods (ie, methods that were not called by other methods) that were profiled while this thread was executing. Generally there is only one root method (multiple root methods can occur when <a href="Profile.html#method-i-pause"><code>Profile#pause</code></a> is used). By starting with the root methods, you can descend down the profile call tree.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="root_methods-source">
-            <pre>   <span class="ruby-comment"># File lib/ruby-prof/thread.rb</span>
-<span class="line-num"> 7</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">root_methods</span>
-<span class="line-num"> 8</span>   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method_info</span><span class="ruby-operator">|</span>
-<span class="line-num"> 9</span>     <span class="ruby-identifier">method_info</span>.<span class="ruby-identifier">root?</span>
-<span class="line-num">10</span>   <span class="ruby-keyword">end</span>
-<span class="line-num">11</span> <span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-total_time" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">total_time</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">total_time</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Returns the total time this thread was executed.</p>
-          
-          
 
-          
           <div class="method-source-code" id="total_time-source">
-            <pre>   <span class="ruby-comment"># File lib/ruby-prof/thread.rb</span>
-<span class="line-num">14</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">total_time</span>
-<span class="line-num">15</span>   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">root_methods</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">method_info</span><span class="ruby-operator">|</span>
-<span class="line-num">16</span>     <span class="ruby-identifier">method_info</span>.<span class="ruby-identifier">callers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">call_info</span><span class="ruby-operator">|</span>
-<span class="line-num">17</span>       <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">call_info</span>.<span class="ruby-identifier">total_time</span>
-<span class="line-num">18</span>     <span class="ruby-keyword">end</span>
-<span class="line-num">19</span>     <span class="ruby-identifier">sum</span>
-<span class="line-num">20</span>   <span class="ruby-keyword">end</span>
-<span class="line-num">21</span> <span class="ruby-keyword">end</span></pre>
+            <pre>  <span class="ruby-comment"># File lib/ruby-prof/thread.rb</span>
+<span class="line-num">4</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">total_time</span>
+<span class="line-num">5</span>   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">call_tree</span>.<span class="ruby-identifier">total_time</span>
+<span class="line-num">6</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-wait_time" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">wait_time</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">wait_time</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Returns the amount of time this thread waited while other thread executed.</p>
-          
-          
 
-          
           <div class="method-source-code" id="wait_time-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/thread.rb</span>
-<span class="line-num">24</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">wait_time</span>
-<span class="line-num">25</span>   <span class="ruby-comment"># wait_time, like self:time, is always method local</span>
-<span class="line-num">26</span>   <span class="ruby-comment"># thus we need to sum over all methods and call infos</span>
-<span class="line-num">27</span>   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">method_info</span><span class="ruby-operator">|</span>
-<span class="line-num">28</span>     <span class="ruby-identifier">method_info</span>.<span class="ruby-identifier">callers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">call_info</span><span class="ruby-operator">|</span>
-<span class="line-num">29</span>       <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">call_info</span>.<span class="ruby-identifier">wait_time</span>
-<span class="line-num">30</span>     <span class="ruby-keyword">end</span>
-<span class="line-num">31</span>     <span class="ruby-identifier">sum</span>
-<span class="line-num">32</span>   <span class="ruby-keyword">end</span>
-<span class="line-num">33</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num"> 9</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">wait_time</span>
+<span class="line-num">10</span>   <span class="ruby-comment"># wait_time, like self:time, is always method local</span>
+<span class="line-num">11</span>   <span class="ruby-comment"># thus we need to sum over all methods and call infos</span>
+<span class="line-num">12</span>   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">method_info</span><span class="ruby-operator">|</span>
+<span class="line-num">13</span>     <span class="ruby-identifier">method_info</span>.<span class="ruby-identifier">callers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">call_tree</span><span class="ruby-operator">|</span>
+<span class="line-num">14</span>       <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">call_tree</span>.<span class="ruby-identifier">wait_time</span>
+<span class="line-num">15</span>     <span class="ruby-keyword">end</span>
+<span class="line-num">16</span>     <span class="ruby-identifier">sum</span>
+<span class="line-num">17</span>   <span class="ruby-keyword">end</span>
+<span class="line-num">18</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

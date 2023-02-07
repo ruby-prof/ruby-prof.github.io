@@ -30,12 +30,11 @@ p {
 }
 
 pre {
-    background-color: #e3e8fa;
     border-radius: 3px;
     font-size: 85%;
     line-height: 1.45;
     overflow: auto;
-    background: #6573aa;
+    background: #262626;
     padding: 16px;
     color: white;
     padding: 0.5em;

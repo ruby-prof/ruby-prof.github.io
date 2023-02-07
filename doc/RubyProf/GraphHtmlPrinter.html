@@ -11,13 +11,14 @@
   var index_rel_prefix = "../";
 </script>
 
-<script src="../js/jquery.js"></script>
-<script src="../js/darkfish.js"></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
 
 <link href="../css/fonts.css" rel="stylesheet">
 <link href="../css/rdoc.css" rel="stylesheet">
-
-
 
 
 <body id="top" role="document" class="class">
@@ -56,45 +57,35 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
   <p class="link"><a href="AbstractPrinter.html">RubyProf::AbstractPrinter</a>
-  
 </div>
 
-    <div id="includes-section" class="nav-section">
+    
+<div id="includes-section" class="nav-section">
   <h3>Included Modules</h3>
 
   <ul class="link-list">
-  
-  
     <li><span class="include">ERB::Util</span>
-  
-  
   </ul>
 </div>
 
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-i-create_link">#create_link</a>
-    
     <li ><a href="#method-i-file_link">#file_link</a>
-    
     <li ><a href="#method-i-method_href">#method_href</a>
-    
     <li ><a href="#method-i-print">#print</a>
-    
     <li class="calls-super" ><a href="#method-i-setup_options">#setup_options</a>
-    
     <li ><a href="#method-i-template">#template</a>
-    
   </ul>
 </div>
 
@@ -121,41 +112,29 @@ printer.print(STDOUT, :min_percent=&gt;0)</pre>
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
 
-    
+
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-    
       <div id="method-i-create_link" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create_link</span><span
-            class="method-args">(thread, overall_time, method)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">create_link</span><span
+              class="method-args">(thread, overall_time, method)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
-          <p>Creates a link to a method.  Note that we do not create links to methods which are under the min_perecent specified by the user, since they will not be printed out.</p>
-          
-          
+          <p>Creates a link to a method.  Note that we do not create links to methods which are under the min_percent specified by the user, since they will not be printed out.</p>
 
-          
           <div class="method-source-code" id="create_link-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">35</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_link</span>(<span class="ruby-identifier">thread</span>, <span class="ruby-identifier">overall_time</span>, <span class="ruby-identifier">method</span>)
@@ -169,33 +148,23 @@ printer.print(STDOUT, :min_percent=&gt;0)</pre>
 <span class="line-num">43</span>   <span class="ruby-keyword">end</span>
 <span class="line-num">44</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-file_link" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">file_link</span><span
-            class="method-args">(path, linenum)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">file_link</span><span
+              class="method-args">(path, linenum)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="file_link-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">50</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">file_link</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">linenum</span>)
@@ -207,66 +176,46 @@ printer.print(STDOUT, :min_percent=&gt;0)</pre>
 <span class="line-num">56</span>   <span class="ruby-keyword">end</span>
 <span class="line-num">57</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-method_href" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">method_href</span><span
-            class="method-args">(thread, method)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">method_href</span><span
+              class="method-args">(thread, method)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="method_href-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">46</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_href</span>(<span class="ruby-identifier">thread</span>, <span class="ruby-identifier">method</span>)
 <span class="line-num">47</span>   <span class="ruby-identifier">h</span>(<span class="ruby-identifier">method</span>.<span class="ruby-identifier">full_name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[&gt;&lt;#\.\?=:]/</span>,<span class="ruby-string">&quot;_&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">fiber_id</span>.<span class="ruby-identifier">to_s</span>)
 <span class="line-num">48</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-print" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">print</span><span
-            class="method-args">(output = STDOUT, options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">print</span><span
+              class="method-args">(output = STDOUT, options = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="print-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">26</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">print</span>(<span class="ruby-identifier">output</span> = <span class="ruby-constant">STDOUT</span>, <span class="ruby-identifier">options</span> = {})
@@ -274,38 +223,27 @@ printer.print(STDOUT, :min_percent=&gt;0)</pre>
 <span class="line-num">28</span>   <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@erb</span>.<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)
 <span class="line-num">29</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-setup_options" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">setup_options</span><span
-            class="method-args">(options)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">setup_options</span><span
+              class="method-args">(options)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
-          
-          
           
             <div class="method-calls-super">
               Calls superclass method
               
             </div>
-          
 
-          
           <div class="method-source-code" id="setup_options-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">21</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">setup_options</span>(<span class="ruby-identifier">options</span>)
@@ -313,59 +251,43 @@ printer.print(STDOUT, :min_percent=&gt;0)</pre>
 <span class="line-num">23</span>   <span class="ruby-ivar">@erb</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">template</span>)
 <span class="line-num">24</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-template" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">template</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">template</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="template-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/printers/graph_html_printer.rb</span>
 <span class="line-num">59</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">template</span>
-<span class="line-num">60</span>   <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-keyword">__FILE__</span>, <span class="ruby-string">&#39;..&#39;</span>, <span class="ruby-string">&#39;..&#39;</span>, <span class="ruby-string">&#39;assets&#39;</span>, <span class="ruby-string">&#39;graph_printer.html.erb&#39;</span>))
-<span class="line-num">61</span>   <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value">:mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;rb&#39;</span>)
-<span class="line-num">62</span> <span class="ruby-keyword">end</span></pre>
+<span class="line-num">60</span>   <span class="ruby-identifier">open_asset</span>(<span class="ruby-string">&#39;graph_printer.html.erb&#39;</span>)
+<span class="line-num">61</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

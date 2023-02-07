@@ -11,13 +11,14 @@
   var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
-
-
 
 
 <body id="top" role="document" class="module">
@@ -59,32 +60,22 @@
     
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-c-exclude_threads">::exclude_threads</a>
-    
     <li ><a href="#method-c-exclude_threads-3D">::exclude_threads=</a>
-    
     <li ><a href="#method-c-measure_mode">::measure_mode</a>
-    
     <li ><a href="#method-c-measure_mode-3D">::measure_mode=</a>
-    
     <li ><a href="#method-c-pause">::pause</a>
-    
     <li ><a href="#method-c-profile">::profile</a>
-    
     <li ><a href="#method-c-resume">::resume</a>
-    
     <li ><a href="#method-c-running-3F">::running?</a>
-    
     <li ><a href="#method-c-start">::start</a>
-    
     <li ><a href="#method-c-stop">::stop</a>
-    
   </ul>
 </div>
 
@@ -102,119 +93,83 @@
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
     <section class="constants-list">
       <header>
         <h3>Constants</h3>
       </header>
       <dl>
-      
         <dt id="VERSION">VERSION
-        
         <dd>
-        
-      
       </dl>
     </section>
-    
 
-    
 
-    
+
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Class Methods</h3>
        </header>
 
-    
       <div id="method-c-exclude_threads" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">exclude_threads</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">exclude_threads</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Returns the threads that ruby-prof should exclude from profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="exclude_threads-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">32</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">exclude_threads</span>
 <span class="line-num">33</span>   <span class="ruby-ivar">@exclude_threads</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
 <span class="line-num">34</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-exclude_threads-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">exclude_threads=</span><span
-            class="method-args">(value)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">exclude_threads=</span><span
+              class="method-args">(value)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Specifies which threads ruby-prof should exclude from profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="exclude_threads-3D-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">37</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">exclude_threads=</span>(<span class="ruby-identifier">value</span>)
 <span class="line-num">38</span>   <span class="ruby-ivar">@exclude_threads</span> = <span class="ruby-identifier">value</span>
 <span class="line-num">39</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-measure_mode" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            measure_mode &rarr; measure_mode
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-callseq">
+              measure_mode &rarr; measure_mode
+            </span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
-        
 
         <div class="method-description">
-          
           <p>Returns what ruby-prof is measuring.  Valid values include:</p>
 <ul><li>
 <p>RubyProf::WALL_TIME</p>
@@ -225,88 +180,63 @@
 </li><li>
 <p>RubyProf::MEMORY</p>
 </li></ul>
-          
-          
 
-          
           <div class="method-source-code" id="measure_mode-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">14</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">measure_mode</span>
 <span class="line-num">15</span>   <span class="ruby-ivar">@measure_mode</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">RubyProf</span><span class="ruby-operator">::</span><span class="ruby-constant">WALL_TIME</span>
 <span class="line-num">16</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-measure_mode-3D" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            measure_mode=value &rarr; void
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-callseq">
+              measure_mode=value &rarr; void
+            </span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
-        
 
         <div class="method-description">
-          
           <p>Specifies what ruby-prof should measure.  Valid values include:</p>
 <ul><li>
 <p>RubyProf::WALL_TIME - Wall time measures the real-world time elapsed between any two moments. If there are other processes concurrently running on the system that use significant CPU or disk time during a profiling run then the reported results will be larger than expected. On Windows, wall time is measured using GetTickCount(), on MacOS by mach_absolute_time, on Linux by clock_gettime and otherwise by gettimeofday.</p>
 </li><li>
 <p>RubyProf::PROCESS_TIME - Process time measures the time used by a process between any two moments. It is unaffected by other processes concurrently running on the system. Remember with process time that calls to methods like sleep will not be included in profiling results. On Windows, process time is measured using GetProcessTimes and on other platforms by clock_gettime.</p>
 </li><li>
-<p>RubyProf::ALLOCATIONS - Object allocations measures show how many objects each method in a program allocates. Measurements are done via Ruby&#39;s GC.stat api.</p>
+<p>RubyProf::ALLOCATIONS - Object allocations measures show how many objects each method in a program allocates. Measurements are done via Ruby’s GC.stat api.</p>
 </li><li>
-<p>RubyProf::MEMORY - Memory measures how much memory each method in a program uses. Measurements are done via Ruby&#39;s TracePoint api.</p>
+<p>RubyProf::MEMORY - Memory measures how much memory each method in a program uses. Measurements are done via Ruby’s TracePoint api.</p>
 </li></ul>
-          
-          
 
-          
           <div class="method-source-code" id="measure_mode-3D-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">27</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">measure_mode=</span>(<span class="ruby-identifier">value</span>)
 <span class="line-num">28</span>   <span class="ruby-ivar">@measure_mode</span> = <span class="ruby-identifier">value</span>
 <span class="line-num">29</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-pause" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">pause</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">pause</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Pauses profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="pause-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">49</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">pause</span>
@@ -314,33 +244,23 @@
 <span class="line-num">51</span>   <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">pause</span>
 <span class="line-num">52</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-profile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">profile</span><span
-            class="method-args">(options = {}, &amp;block)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">profile</span><span
+              class="method-args">(options = {}, &amp;block)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Profiles a block</p>
-          
-          
 
-          
           <div class="method-source-code" id="profile-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">78</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">profile</span>(<span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
@@ -349,33 +269,23 @@
 <span class="line-num">81</span>   <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">profile</span>(<span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
 <span class="line-num">82</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-resume" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">resume</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">resume</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Resume profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="resume-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">64</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">resume</span>
@@ -383,33 +293,23 @@
 <span class="line-num">66</span>   <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">resume</span>
 <span class="line-num">67</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-running-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">running?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">running?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Is a profile running?</p>
-          
-          
 
-          
           <div class="method-source-code" id="running-3F-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">55</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">running?</span>
@@ -420,33 +320,23 @@
 <span class="line-num">60</span>   <span class="ruby-keyword">end</span>
 <span class="line-num">61</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-start" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">start</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">start</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Starts profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="start-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">42</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">start</span>
@@ -455,33 +345,23 @@
 <span class="line-num">45</span>   <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">start</span>
 <span class="line-num">46</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-c-stop" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">stop</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">stop</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Stops profiling</p>
-          
-          
 
-          
           <div class="method-source-code" id="stop-source">
             <pre>   <span class="ruby-comment"># File lib/ruby-prof/compatibility.rb</span>
 <span class="line-num">70</span> <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">stop</span>
@@ -491,25 +371,20 @@
 <span class="line-num">74</span>   <span class="ruby-identifier">result</span>
 <span class="line-num">75</span> <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
