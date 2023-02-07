@@ -40,7 +40,7 @@
         <p>The master object is the Profile object. Each Profile object is
           responsible for managing the memory of its child objects which are C
           structures. When the Profile object goes out of scope, it recursively
-          frees all its objects.&nbsp; In the class diagram, this can bee seen
+          frees all its objects. In the class diagram, this can bee seen
           via the composition relationships. The owning object is denoted with a
           filled in black diamond. Thus a Profile frees its threads, Threads
           free their CallTrees and Methods, etc.</p>
@@ -50,11 +50,13 @@
            done via the GC mark phase. CallTree instances mark their associated MethodInfo instances, and MethodInfo
            instances in turn mark their owning Profile instance.
         </p>
-        <p>Previous versions of RubyProf (before 1.3) would not keep the top level Profile instance alive and instead
-           would detect when the underlying Ruby object was freed. However, this approach could result in
-           crashes if a GC happened just at the wrong time. Specifically, when trying to expose an object such as
-           a CallTree Ruby performs a memory allocation. This allocation could trigger a GC, freeing the top level
-           Profile instance and its associated CallTree. Thus the returned CallTree instance would be invalid.
+        <p>Starting with version 1.5 it is possible to create new instances of the
+          Thread, CallTree and MethodInfo classes from Ruby. In general you won't need to use this
+          functionality - it was added to make it easier to write tests. However, this functionality does
+          complicate memory management because some objects are now owned by the C extension while others are
+          owned by Ruby. To track this information an internal ownership flag was added to instances of these classes.
+          RubyProf automatically handles this, but it is important to understand if you are reading or
+          modifying the C code.</p>
         </p>
       </div>
     </div>
