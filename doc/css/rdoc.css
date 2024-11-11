@@ -608,6 +608,7 @@ pre {
 .ruby-comment    { color: #dc0000; background: transparent; }
 .ruby-regexp     { color: #ffa07a; background: transparent; }
 .ruby-value      { color: #7fffd4; background: transparent; }
+.ruby-object     { color: #80a9cd; background: transparent; }
 
 /* @end */
 
