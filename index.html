@@ -107,6 +107,7 @@
             <li>convenience API</li>
             <li>core API</li>
         </ul>
+        <!-- Command Line  -->
         <h3><a id="command-line">Command Line </a></h3>
         <p>The easiest way to use ruby-prof is via the command line, which
             requires no modifications to your program.&nbsp; The basic usage is:</p>
@@ -116,15 +117,23 @@
         <p>For a full list of options, see <a href="doc/RubyProf/Cmd.html">RubyProf::Cmd</a>
             documentation or execute the following command:</p>
         <pre>ruby-prof -h</pre>
+
+        <!-- Convenience API -->
         <h3>Convenience API<span></span></h3>
         <p>The second way to use ruby-prof is via its convenience API. This
             requires small modifications to the program you want to profile:</p>
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
+<span class="ruby-identifier">profile</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">Profile</span>.<span
+
+class="ruby-identifier">new</span>
+
 <span class="ruby-comment"># profile the code</span>
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">start</span>
 <span class="ruby-comment"># ... code to profile ...</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-object">profile</span>.<span
 
                     class="ruby-identifier">stop</span>
 
@@ -133,8 +142,8 @@
 
                     class="ruby-operator">::</span><span class="ruby-constant">FlatPrinter</span>.<span
 
-                    class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+                    class="ruby-identifier">new</span>(<span class="ruby-object">result</span>)
+<span class="ruby-object">printer</span>.<span class="ruby-identifier">print</span>(<span
 
                     class="ruby-constant">STDOUT</span>)
 </pre>
@@ -142,7 +151,9 @@
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
 <span class="ruby-comment"># profile the code</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span><span
+
+                    class="ruby-operator">::</span><span class="ruby-constant">Profile</span>.<span
 
                     class="ruby-identifier">profile</span> <span class="ruby-keyword">do</span>
   <span class="ruby-comment"># ... code to profile ...</span>
@@ -153,24 +164,31 @@
 
                     class="ruby-operator">::</span><span class="ruby-constant">GraphPrinter</span>.<span
 
-                    class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)
-<span class="ruby-identifier">printer</span>.<span class="ruby-identifier">print</span>(<span
+                    class="ruby-identifier">new</span>(<span class="ruby-object">result</span>)
+<span class="ruby-object">printer</span>.<span class="ruby-identifier">print</span>(<span
 
                     class="ruby-constant">STDOUT</span>, {})
 </pre>
         ruby-prof also supports pausing and resuming profiling runs.
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
+<span class="ruby-identifier">profile</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">Profile</span>.<span
+
+class="ruby-identifier">new</span>
+
 <span class="ruby-comment"># profile the code</span>
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">start</span>
 <span class="ruby-comment"># ... code to profile ...</span>
 
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">pause</span>
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">pause</span>
 <span class="ruby-comment"># ... other code ...</span>
 
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">resume</span>
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">resume</span>
 <span class="ruby-comment"># ... code to profile ...</span>
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+
+<span class="ruby-identifier">result</span> = <span class="ruby-object">profile</span>.<span
 
                     class="ruby-identifier">stop</span>
 </pre>
@@ -178,13 +196,26 @@
             In addition, resume can also take a block:</p>
         <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'ruby-prof'</span>
 
-<span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">resume</span> <span
+<span class="ruby-identifier">profile</span> = <span class="ruby-constant">RubyProf</span><span
+
+class="ruby-operator">::</span><span class="ruby-constant">Profile</span>.<span
+
+class="ruby-identifier">new</span>
+
+<span class="ruby-comment"># profile the code</span>
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-comment"># ... code to profile ...</span>
+
+<span class="ruby-object">profile</span>.<span class="ruby-identifier">pause</span>
+<span class="ruby-comment"># ... other code ...</span>
+
+<span class="ruby-object">profile</span>.<span.<span class="ruby-identifier">resume</span> <span
 
                     class="ruby-keyword">do</span>
   <span class="ruby-comment"># ... code to profile...</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-identifier">result</span> = <span class="ruby-constant">RubyProf</span>.<span
+<span class="ruby-identifier">result</span> = <span class="ruby-object">profile</span>.<span
 
                     class="ruby-identifier">stop</span>
 </pre>
@@ -193,6 +224,8 @@
         <p>The <code>RubyProf.profile</code> method can take various options,
             which are described in the <a href="#profiling-options">Profiling
                 Options</a> below. </p>
+
+        <!-- Core API -->
         <h3>Core API</h3>
         <p>The convenience API is a wrapper around the the <code>Ruby::Profile</code>
             class. Using the Profile class directly provides addition
