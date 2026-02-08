@@ -1,0 +1,713 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A profiler for MRI Ruby">
+      
+      
+      
+        <link rel="canonical" href="https://ruby-prof.github.io/advanced-usage/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../reports/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.21">
+    
+    
+      
+        <title>Advanced Usage - ruby-prof</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f28b7ce3.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ruby-prof" class="md-header__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ruby-prof
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advanced Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ruby-prof" class="md-nav__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    ruby-prof
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Usage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiling Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurement-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation Tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-inclusionexclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Inclusion/Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-threads-and-fibers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging Threads and Fibers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiling-rails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiling Rails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiling Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurement-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation Tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-inclusionexclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Inclusion/Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-threads-and-fibers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging Threads and Fibers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="advanced-usage">Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permanent link">&para;</a></h1>
+<p>This section describes advanced usage of ruby-prof. Additional documentation for every class is also <a href="../#api-documentation">available</a>.</p>
+<h2 id="profiling-options">Profiling Options<a class="headerlink" href="#profiling-options" title="Permanent link">&para;</a></h2>
+<p>ruby-prof understands the following options when profiling code:</p>
+<p><strong>measure_mode</strong> - What ruby-prof should measure. For more information see the <a href="#measurement-mode">Measurement Mode</a> section.</p>
+<p><strong>track_allocations</strong> - Tracks each object location, including the object class, memory size and source file location. For more information see the <a href="#allocation-tracking">Allocation Tracking</a> section.</p>
+<p><strong>exclude_threads</strong> - Array of threads which should not be profiled. For more information see the <a href="#thread-inclusionexclusion">Thread Inclusion/Exclusion</a> section.</p>
+<p><strong>include_threads</strong> - Array of threads which should be profiled. All other threads will be ignored. For more information see the <a href="#thread-inclusionexclusion">Thread Inclusion/Exclusion</a> section.</p>
+<p><strong>allow_exceptions</strong> - Whether to raise exceptions encountered during profiling, or to suppress them. Defaults to false.</p>
+<p><strong>exclude_common</strong> - Automatically calls <code>exclude_common_methods!</code> to exclude commonly cluttering methods. Defaults to false. For more information see the <a href="#method-exclusion">Method Exclusion</a> section.</p>
+<h2 id="measurement-mode">Measurement Mode<a class="headerlink" href="#measurement-mode" title="Permanent link">&para;</a></h2>
+<p>The measurement mode determines what ruby-prof measures when profiling code. Supported measurements are:</p>
+<p><strong>RubyProf::WALL_TIME</strong> - Wall time measures the real-world time elapsed between any two moments in seconds. If there are other processes concurrently running on the system that use significant CPU or disk time during a profiling run then the reported results will be larger than expected. On Windows, wall time is measured using <code>GetTickCount()</code>, on MacOS by <code>mach_absolute_time</code>, on Linux by <code>clock_gettime</code> and otherwise by <code>gettimeofday</code>.</p>
+<p><strong>RubyProf::PROCESS_TIME</strong> - Process time measures the time used by a process between any two moments in seconds. It is unaffected by other processes concurrently running on the system. Remember with process time that calls to methods like sleep will not be included in profiling results. On Windows, process time is measured using <code>GetProcessTimes</code> and on other platforms by <code>clock_gettime</code>.</p>
+<p><strong>RubyProf::ALLOCATIONS</strong> - Object allocations measures show how many objects each method in a program allocates. Measurements are done via Ruby's <code>GC.stat</code> api.</p>
+<p>To set the measurement mode:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">measure_mode</span><span class="p">:</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">WALL_TIME</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">measure_mode</span><span class="p">:</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">PROCESS_TIME</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">measure_mode</span><span class="p">:</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">ALLOCATIONS</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The default value is <code>RubyProf::WALL_TIME</code>. You may also specify the measure mode by using the <code>RUBY_PROF_MEASURE_MODE</code> environment variable:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>export RUBY_PROF_MEASURE_MODE=wall
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>export RUBY_PROF_MEASURE_MODE=process
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>export RUBY_PROF_MEASURE_MODE=allocations
+</span></code></pre></div>
+<h2 id="allocation-tracking">Allocation Tracking<a class="headerlink" href="#allocation-tracking" title="Permanent link">&para;</a></h2>
+<p>ruby-prof also has the ability to track object allocations. This functionality can be turned on via the track_allocations option:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;ruby-prof&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span><span class="ss">:track_allocations</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="o">...</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">end</span>
+</span></code></pre></div>
+<p>Note the <code>RubyProf::ALLOCATIONS</code> measure mode is slightly different than tracking allocations. The measurement mode provides high level information about the number of allocations performed in each method. In contrast, tracking allocations provides detailed information about the type, number, memory usage and location of each allocation. Currently, to see allocations results you must use the <code>RubyProf::GraphHtmlPrinter</code>.</p>
+<h2 id="thread-inclusionexclusion">Thread Inclusion/Exclusion<a class="headerlink" href="#thread-inclusionexclusion" title="Permanent link">&para;</a></h2>
+<p>ruby-prof can profile multiple threads. Sometimes this can be overwhelming. For example, assume you want to determine why your tests are running slowly. If you are using minitest, it will run your tests in parallel by spawning tens of worker threads (note to tell minitest to use a single thread set the N environmental variable like this ENV = 0). Thus, ruby-prof provides two options to specify which threads should be profiled:</p>
+<p><strong>exclude_threads</strong> - Array of threads which should not be profiled.</p>
+<p><strong>include_threads</strong> - Array of threads which should be profiled. All other threads will be ignored.</p>
+<h2 id="method-exclusion">Method Exclusion<a class="headerlink" href="#method-exclusion" title="Permanent link">&para;</a></h2>
+<p>ruby-prof supports excluding specific methods and threads from profiling results. This is useful for reducing connectivity in the call graph, making it easier to identify the source of performance problems when using a graph printer. For example, consider <code>Integer#times</code>: it's hardly ever useful to know how much time is spent in the method itself. We are more interested in how much the passed in block contributes to the time spent in the method which contains the <code>Integer#times</code> call. The effect on collected metrics are identical to eliminating methods from the profiling result in a post process step.</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">profile</span><span class="o">.</span><span class="n">exclude_methods!</span><span class="p">(</span><span class="nb">Integer</span><span class="p">,</span><span class="w"> </span><span class="ss">:times</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">profile</span><span class="o">.</span><span class="n">start</span>
+</span></code></pre></div>
+<p>A convenience method is provided to exclude a large number of methods which usually clutter up profiles:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">profile</span><span class="o">.</span><span class="n">exclude_common_methods!</span>
+</span></code></pre></div>
+<p>However, this is a somewhat opinionated method collection. It's usually better to view it as an inspiration instead of using it directly (see <a href="https://github.com/ruby-prof/ruby-prof/blob/e087b7d7ca11eecf1717d95a5c5fea1e36ea3136/lib/ruby-prof/profile/exclude_common_methods.rb">exclude_common_methods.rb</a>).</p>
+<h2 id="merging-threads-and-fibers">Merging Threads and Fibers<a class="headerlink" href="#merging-threads-and-fibers" title="Permanent link">&para;</a></h2>
+<p>ruby-prof profiles each thread and fiber separately. A common design pattern is to have a main thread delegate work to background threads or fibers. Examples include web servers such as Puma and Falcon, as well as code that uses <code>Enumerator</code>, <code>Fiber.new</code>, or async libraries.</p>
+<p>Understanding profiling results can be very difficult when there are many threads or fibers because each one appears as a separate entry in the output. To help with this, ruby-prof includes the ability to merge results for threads and fibers that start with the same root method. In the best case, this can collapse results into just two entries - one for the parent thread and one for all workers.</p>
+<p>Note the collapsed results show the sum of times for all merged threads/fibers. For example, assume there are 10 worker fibers that each took 5 seconds to run. The single merged entry will show a total time of 50 seconds.</p>
+<p>To merge threads and fibers:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">            </span><span class="o">...</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">          </span><span class="k">end</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">profile</span><span class="o">.</span><span class="n">merge!</span>
+</span></code></pre></div>
+<p>This is also supported in the Rack adapter via the <code>merge_fibers</code> option:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="w"> </span><span class="no">Rack</span><span class="o">::</span><span class="no">RubyProf</span><span class="p">,</span><span class="w"> </span><span class="ss">:path</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;./tmp/profile&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:merge_fibers</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+</span></code></pre></div>
+<h2 id="saving-results">Saving Results<a class="headerlink" href="#saving-results" title="Permanent link">&para;</a></h2>
+<p>It can be helpful to save the results of a profiling run for later analysis. Results can be saved using Ruby's <a href="https://ruby-doc.org/core-2.6.3/Marshal.html">marshal</a> library.</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">profile_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="o">...</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">end</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Save the results</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Marshal</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">profile_1</span><span class="p">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># Sometime later load the results</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">profile_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Marshal</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>!!!WARNING!!!</strong> - Only load ruby-prof profiles that you know are safe. Demarshaling data can lead to arbitrary code execution and thus can be <a href="https://ruby-doc.org/core-2.6.3/Marshal.html#module-Marshal-label-Security+considerations">dangerous</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.36a64b72.min.js"></script>
+      
+    
+  </body>
+</html>
