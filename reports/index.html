@@ -36,6 +36,11 @@
       
       <link rel="stylesheet" href="../assets/stylesheets/modern/main.f28b7ce3.min.css">
       
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
       
 
 
@@ -53,6 +58,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
@@ -62,7 +69,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -89,8 +103,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="ruby-prof" class="md-header__button md-logo" aria-label="ruby-prof" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+  <img src="../public/images/ruby-prof-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -114,6 +127,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -133,6 +172,16 @@
       
     
     <div class="md-header__source">
+      
+        <a href="https://github.com/ruby-prof/ruby-prof" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruby-prof/ruby-prof
+  </div>
+</a>
       
     </div>
   </nav>
@@ -162,12 +211,23 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ruby-prof" class="md-nav__button md-logo" aria-label="ruby-prof" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+  <img src="../public/images/ruby-prof-logo.svg" alt="logo">
 
     </a>
     ruby-prof
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ruby-prof/ruby-prof" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruby-prof/ruby-prof
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -320,10 +380,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flat-report" class="md-nav__link">
+  <a href="#flat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flat Report
+        Flat
       
     </span>
   </a>
@@ -331,10 +391,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#graph-report" class="md-nav__link">
+  <a href="#graph-text" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Graph Report
+        Graph (Text)
       
     </span>
   </a>
@@ -342,21 +402,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#html-graph-report" class="md-nav__link">
+  <a href="#graph-html" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HTML Graph Report
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#call-stack-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Call Stack Report
+        Graph (HTML)
       
     </span>
   </a>
@@ -375,10 +424,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#call-tree" class="md-nav__link">
+  <a href="#call-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Call Tree
+        Call Stack
       
     </span>
   </a>
@@ -386,10 +435,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#graphviz-report" class="md-nav__link">
+  <a href="#graphviz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Graphviz Report
+        Graphviz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cachegrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cachegrind
       
     </span>
   </a>
@@ -546,10 +606,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flat-report" class="md-nav__link">
+  <a href="#flat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flat Report
+        Flat
       
     </span>
   </a>
@@ -557,10 +617,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#graph-report" class="md-nav__link">
+  <a href="#graph-text" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Graph Report
+        Graph (Text)
       
     </span>
   </a>
@@ -568,21 +628,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#html-graph-report" class="md-nav__link">
+  <a href="#graph-html" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HTML Graph Report
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#call-stack-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Call Stack Report
+        Graph (HTML)
       
     </span>
   </a>
@@ -601,10 +650,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#call-tree" class="md-nav__link">
+  <a href="#call-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Call Tree
+        Call Stack
       
     </span>
   </a>
@@ -612,10 +661,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#graphviz-report" class="md-nav__link">
+  <a href="#graphviz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Graphviz Report
+        Graphviz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cachegrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cachegrind
       
     </span>
   </a>
@@ -669,6 +729,9 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+  
+
 
 <h1 id="reports">Reports<a class="headerlink" href="#reports" title="Permanent link">&para;</a></h1>
 <p>Once you have completed a profiling run, ruby-prof provides a number of reports that you can use to analyze the results. Reports are created via the use of printers:</p>
@@ -680,26 +743,32 @@
 </span></code></pre></div>
 <p>The first parameter is any writable IO object such as <code>STDOUT</code> or a file. The second parameter specifies the minimum percentage a method must take to be printed. Percentages should be specified as integers in the range 0 to 100. For more information please see the documentation for the different printers.</p>
 <p>The different types of reports, and their associated printers, are:</p>
-<h2 id="flat-report">Flat Report<a class="headerlink" href="#flat-report" title="Permanent link">&para;</a></h2>
-<p>The flat report shows the overall time spent in each method. It is a good way of quickly identifying which methods take the most time. Use <code>RubyProf::FlatPrinter</code> to generate this report. (<a href="../../public/examples/reports/flat.txt">example</a>)</p>
-<h2 id="graph-report">Graph Report<a class="headerlink" href="#graph-report" title="Permanent link">&para;</a></h2>
-<p>The graph report shows the overall time spent in each method. In addition, it also shows which methods call the current method and which methods it calls. Thus they are good for understanding how methods get called and provide insight into the flow of your program. Use <code>RubyProf::GraphPrinter</code> to generate this report. (<a href="../../public/examples/reports/graph.txt">example</a>)</p>
-<h2 id="html-graph-report">HTML Graph Report<a class="headerlink" href="#html-graph-report" title="Permanent link">&para;</a></h2>
-<p>HTML Graph profiles are the same as graph reports, except output is generated in hyper-linked HTML. Since graph reports can be quite large, the embedded links make it much easier to navigate the results. Use <code>RubyProf::GraphHtmlPrinter</code> to generate this report. (<a href="../../public/examples/reports/graph.html">example</a>)</p>
-<h2 id="call-stack-report">Call Stack Report<a class="headerlink" href="#call-stack-report" title="Permanent link">&para;</a></h2>
-<p>Call stack reports produce a HTML visualization of the time spent in each execution path of the profiled code. Use <code>RubyProf::CallStackPrinter</code> to generate this report. (<a href="../../public/examples/reports/call_stack.html">example</a>)</p>
+<h2 id="flat">Flat<a class="headerlink" href="#flat" title="Permanent link">&para;</a></h2>
+<p>The flat report shows the overall time spent in each method. It is a good way of quickly identifying which methods take the most time. Use <code>RubyProf::FlatPrinter</code> to generate this report. (<a href="../public/examples/reports/flat.txt" target="_blank">example</a>)</p>
+<p><img alt="Flat Report" src="../../public/images/flat.png" /></p>
+<h2 id="graph-text">Graph (Text)<a class="headerlink" href="#graph-text" title="Permanent link">&para;</a></h2>
+<p>The graph report shows the overall time spent in each method. In addition, it also shows which methods call the current method and which methods it calls. Thus they are good for understanding how methods get called and provide insight into the flow of your program. Use <code>RubyProf::GraphPrinter</code> to generate this report. (<a href="../public/examples/reports/graph.txt" target="_blank">example</a>)</p>
+<p><img alt="Graph Report" src="../../public/images/graph.png" /></p>
+<h2 id="graph-html">Graph (HTML)<a class="headerlink" href="#graph-html" title="Permanent link">&para;</a></h2>
+<p>HTML Graph profiles are the same as graph reports, except output is generated in hyper-linked HTML. Since graph reports can be quite large, the embedded links make it much easier to navigate the results. Use <code>RubyProf::GraphHtmlPrinter</code> to generate this report. (<a href="../public/examples/reports/graph.html" target="_blank">example</a>)</p>
+<p><img alt="HTML Graph Report" src="../../public/images/graph_html.png" /></p>
 <h2 id="flame-graph">Flame Graph<a class="headerlink" href="#flame-graph" title="Permanent link">&para;</a></h2>
-<p>Flame graph reports produce a self-contained HTML visualization of the profiled code. Each method is represented as a horizontal bar whose width is proportional to its total time. Bars are stacked vertically by call depth, making it easy to identify hot code paths at a glance. A toggle switches between flame (bottom-up) and icicle (top-down) views. Use <code>RubyProf::FlameGraphPrinter</code> to generate this report. (<a href="../../public/examples/reports/flame_graph.html">example</a>)</p>
+<p>Flame graph reports produce a self-contained HTML visualization of the profiled code. Each method is represented as a horizontal bar whose width is proportional to its total time. Bars are stacked vertically by call depth, making it easy to identify hot code paths at a glance. A toggle switches between flame (bottom-up) and icicle (top-down) views. Use <code>RubyProf::FlameGraphPrinter</code> to generate this report. (<a href="../public/examples/reports/flame_graph.html" target="_blank">example</a>)</p>
+<p><img alt="Flame Graph" src="../../public/images/flame_graph.png" /></p>
 <p>Interactive features include hover tooltips (showing method name, self time, total time, percentage, and call count), click-to-zoom into a subtree, a reset zoom button, a search box to highlight matching methods, and a thread selector when multiple threads are profiled.</p>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">printer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">FlameGraphPrinter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">printer</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;flame_graph.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;w&quot;</span><span class="p">))</span>
 </span></code></pre></div>
-<h2 id="call-tree">Call Tree<a class="headerlink" href="#call-tree" title="Permanent link">&para;</a></h2>
-<p>Call tree output results in the calltree profile format which is used by <a href="https://kcachegrind.github.io/html/Home.html">KCachegrind</a>. More information about the format can be found at the KCachegrind site. Use <code>RubyProf::CallTreePrinter</code> to generate this report. (<a href="../../public/examples/reports/callgrind.out">example</a>)</p>
-<h2 id="graphviz-report">Graphviz Report<a class="headerlink" href="#graphviz-report" title="Permanent link">&para;</a></h2>
-<p>The graphviz report is designed to be opened by <a href="https://www.graphviz.org/">Graphviz</a> to create visualization of profile results. The output can be visualized using the <a href="https://dreampuf.github.io/GraphvizOnline/">Graphviz Online</a> viewer. Use <code>RubyProf::DotPrinter</code> to generate this report. (<a href="../../public/examples/reports/graph.dot">example</a>, <a href="../../public/examples/reports/graphviz_viewer.html">view online</a>)</p>
+<h2 id="call-stack">Call Stack<a class="headerlink" href="#call-stack" title="Permanent link">&para;</a></h2>
+<p>Call stack reports produce a HTML visualization of the time spent in each execution path of the profiled code. Use <code>RubyProf::CallStackPrinter</code> to generate this report. (<a href="../public/examples/reports/call_stack.html" target="_blank">example</a>)</p>
+<p><img alt="Call Stack Report" src="../../public/images/call_stack.png" /></p>
+<h2 id="graphviz">Graphviz<a class="headerlink" href="#graphviz" title="Permanent link">&para;</a></h2>
+<p>The graphviz report is designed to be opened by <a href="https://www.graphviz.org/">Graphviz</a> to create visualization of profile results. The output can be visualized using the <a href="https://dreampuf.github.io/GraphvizOnline/">Graphviz Online</a> viewer. Use <code>RubyProf::DotPrinter</code> to generate this report. (<a href="../public/examples/reports/graph.dot" target="_blank">example</a>, <a href="../public/examples/reports/graphviz_viewer.html" target="_blank">view online</a>)</p>
+<p><img alt="Graphviz Report" src="../../public/images/dot_printer.png" /></p>
+<h2 id="cachegrind">Cachegrind<a class="headerlink" href="#cachegrind" title="Permanent link">&para;</a></h2>
+<p>Cachegrind output results in the calltree profile format which is used by <a href="https://kcachegrind.github.io/html/Home.html">KCachegrind</a>. More information about the format can be found at the KCachegrind site. Use <code>RubyProf::CallTreePrinter</code> to generate this report. (<a href="../public/examples/reports/callgrind.out" target="_blank">example</a>)</p>
 <h2 id="call-info-report">Call Info Report<a class="headerlink" href="#call-info-report" title="Permanent link">&para;</a></h2>
-<p>Call info reports print the call tree with timing information for each node. This is mainly useful for debugging purposes as it provides access into ruby-prof's internals. Use <code>RubyProf::CallInfoPrinter</code> to generate this report. (<a href="../../public/examples/reports/call_info.txt">example</a>)</p>
+<p>Call info reports print the call tree with timing information for each node. This is mainly useful for debugging purposes as it provides access into ruby-prof's internals. Use <code>RubyProf::CallInfoPrinter</code> to generate this report. (<a href="../public/examples/reports/call_info.txt" target="_blank">example</a>)</p>
 <h2 id="multiple-reports">Multiple Reports<a class="headerlink" href="#multiple-reports" title="Permanent link">&para;</a></h2>
 <p><code>RubyProf::MultiPrinter</code> can generate several reports in one profiling run. It requires a directory path and a profile basename for the files it produces:</p>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">printer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">MultiPrinter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
