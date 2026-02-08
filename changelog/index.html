@@ -1,0 +1,3300 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A profiler for MRI Ruby">
+      
+      
+      
+        <link rel="canonical" href="https://ruby-prof.github.io/changelog/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.21">
+    
+    
+      
+        <title>Changelog - ruby-prof</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f28b7ce3.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ruby-prof" class="md-header__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+      
+  <img src="../public/images/ruby-prof-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ruby-prof
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/ruby-prof/ruby-prof" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruby-prof/ruby-prof
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ruby-prof" class="md-nav__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+      
+  <img src="../public/images/ruby-prof-logo.svg" alt="logo">
+
+    </a>
+    ruby-prof
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ruby-prof/ruby-prof" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruby-prof/ruby-prof
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiling-rails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiling Rails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#180-2026-02-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8.0 (2026-02-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#172-2025-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.2 (2025-05-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#171-2024-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.1 (2024-10-19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#170-2024-01-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.0 (2024-01-07)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-2023-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.3 (2023-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162-2023-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.2 (2023-04-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#161-2023-02-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.1 (2023-02-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#160-2023-02-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.0 (2023-02-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150-2023-02-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5.0 (2023-02-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145-2022-12-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.5 (2022-12-27)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144-2022-12-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.4 (2022-12-11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-2021-02-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.3 (2021-02-16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-2020-11-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.2 (2020-11-3)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141-2020-05-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.1 (2020-05-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#140-2020-05-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.0 (2020-05-12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-2020-04-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2 (2020-04-19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-2020-03-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.1 (2020-03-11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130-2020-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.0 (2020-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#120-2020-01-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.0 (2020-01-23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#110-2019-12-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.0 (2019-12-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#100-2019-07-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.0.0 (2019-07-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0180-2019-05-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.0 (2019-05-27)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.18.0 (2019-05-27)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0170-2017-12-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.0 (2017-12-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0162-2016-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.2 (2016-08-25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0161-2016-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.1 (2016-08-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0160-2016-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.0 (2016-08-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0159-2015-12-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.9 (2015-12-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0158-2015-04-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.8 (2015-04-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0157-2015-04-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.7 (2015-04-23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0156-2015-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.6 (2015-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0155-2015-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.5 (2015-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0154-2015-02-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.4 (2015-02-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0153-2015-01-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.3 (2015-01-16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-2014-05-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.2 (2014-05-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-2014-05-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.1 (2014-05-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-2014-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.0 (2014-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-2014-01-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.2 (2014-01-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-2014-01-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.0 (2014-01-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0131-2013-12-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13.1 (2013-12-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#013-2013-03-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13 (2013-03-10)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0122-2013-02-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.2 (2013-02-13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121-2013-01-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.1 (2013-01-07)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-2013-01-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.0 (2013-01-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0113-2012-12-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.3 (2012-12-27)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0112-2012-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.2 (2012-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111-2012-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.1 (2012-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-2012-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0 (2012-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc3-2012-03-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc3 (2012-03-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc2-2012-03-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc2 (2012-03-25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc1-2012-03-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc1 (2012-03-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0108-2011-07-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.8 (2011-07-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0107-2011-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.7 (2011-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0106-2011-04-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.6 (2011-04-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0105-2011-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.5 (2011-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0104-2011-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.4 (2011-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#092" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#091" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0710-2009-01-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.10 (2009-01-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#077-2009-01-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.7 (2009-01-13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#076-2009-12-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.6 (2009-12-31)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#075-2009-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.5 (2009-12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#073-2008-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.3 (2008-12-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072-2008-12-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.2 (2008-12-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071-2008-11-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.1 (2008-11-28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-2008-11-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.0 (2008-11-04)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.0 (2008-11-04)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-2008-02-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.0 (2008-02-03)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0 (2008-02-03)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#052-2007-07-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 (2007-07-19)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.2 (2007-07-19)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#051-2007-07-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (2007-07-18)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.1 (2007-07-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2007-07-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 (2007-07-09)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 (2007-07-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#041-2006-06-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 (2006-06-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4.1 (2006-06-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2006-06-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.0 (2006-06-16)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4.0 (2006-06-16)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#180-2026-02-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8.0 (2026-02-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#172-2025-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.2 (2025-05-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#171-2024-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.1 (2024-10-19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#170-2024-01-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7.0 (2024-01-07)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-2023-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.3 (2023-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162-2023-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.2 (2023-04-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#161-2023-02-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.1 (2023-02-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#160-2023-02-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.0 (2023-02-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150-2023-02-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5.0 (2023-02-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145-2022-12-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.5 (2022-12-27)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144-2022-12-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.4 (2022-12-11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-2021-02-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.3 (2021-02-16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-2020-11-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.2 (2020-11-3)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141-2020-05-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.1 (2020-05-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#140-2020-05-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.0 (2020-05-12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-2020-04-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2 (2020-04-19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-2020-03-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.1 (2020-03-11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130-2020-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.0 (2020-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#120-2020-01-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.0 (2020-01-23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#110-2019-12-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.0 (2019-12-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#100-2019-07-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.0.0 (2019-07-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0180-2019-05-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.0 (2019-05-27)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.18.0 (2019-05-27)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0170-2017-12-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.0 (2017-12-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0162-2016-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.2 (2016-08-25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0161-2016-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.1 (2016-08-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0160-2016-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.0 (2016-08-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0159-2015-12-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.9 (2015-12-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0158-2015-04-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.8 (2015-04-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0157-2015-04-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.7 (2015-04-23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0156-2015-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.6 (2015-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0155-2015-02-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.5 (2015-02-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0154-2015-02-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.4 (2015-02-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0153-2015-01-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.3 (2015-01-16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-2014-05-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.2 (2014-05-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-2014-05-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.1 (2014-05-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-2014-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.0 (2014-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-2014-01-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.2 (2014-01-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-2014-01-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.0 (2014-01-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0131-2013-12-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13.1 (2013-12-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#013-2013-03-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13 (2013-03-10)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0122-2013-02-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.2 (2013-02-13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121-2013-01-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.1 (2013-01-07)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-2013-01-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.0 (2013-01-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0113-2012-12-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.3 (2012-12-27)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0112-2012-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.2 (2012-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111-2012-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.1 (2012-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-2012-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0 (2012-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc3-2012-03-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc3 (2012-03-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc2-2012-03-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc2 (2012-03-25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110rc1-2012-03-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0.rc1 (2012-03-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0108-2011-07-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.8 (2011-07-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0107-2011-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.7 (2011-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0106-2011-04-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.6 (2011-04-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0105-2011-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.5 (2011-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0104-2011-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.4 (2011-04-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#092" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#091" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0710-2009-01-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.10 (2009-01-22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#077-2009-01-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.7 (2009-01-13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#076-2009-12-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.6 (2009-12-31)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#075-2009-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.5 (2009-12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#073-2008-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.3 (2008-12-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072-2008-12-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.2 (2008-12-08)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071-2008-11-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.1 (2008-11-28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-2008-11-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.0 (2008-11-04)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.0 (2008-11-04)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-2008-02-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.0 (2008-02-03)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0 (2008-02-03)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#052-2007-07-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 (2007-07-19)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.2 (2007-07-19)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#051-2007-07-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (2007-07-18)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.1 (2007-07-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2007-07-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 (2007-07-09)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 (2007-07-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#041-2006-06-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 (2006-06-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4.1 (2006-06-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2006-06-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.0 (2006-06-16)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4.0 (2006-06-16)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="180-2026-02-08">1.8.0 (2026-02-08)<a class="headerlink" href="#180-2026-02-08" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ruby 4.0 support.</li>
+<li>Add flame graph visualizations with icicle mode toggle</li>
+<li>Lots of documentation updates!</li>
+<li>Apply consistent styling across all reports</li>
+<li>Add <code>Profile#measure_mode_name</code> method for human-friendly measurement mode names (e.g., "Wall Time" instead of "wall_time")</li>
+<li>Fix DotPrinter generating self-referencing edges (was using callers instead of callees)</li>
+<li>Add Graphviz Online viewer link for dot output</li>
+<li>Removed <code>RubyProf::MEMORY</code> measurement mode (no longer works on Ruby 4.0)</li>
+</ul>
+<h2 id="172-2025-05-21">1.7.2 (2025-05-21)<a class="headerlink" href="#172-2025-05-21" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix compiling on Ubuntu and Arch Linux</li>
+<li>Update tests for Ruby 3.4</li>
+<li>Remove tests for Ruby 3.1</li>
+<li>Update MacOS to use clock_gettime (same as Linux) instead of proprietary mach_absolute_time API</li>
+<li>Add CMake support</li>
+</ul>
+<h2 id="171-2024-10-19">1.7.1 (2024-10-19)<a class="headerlink" href="#171-2024-10-19" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix crashes when calling merge due to inconsistent method keys (Chris Heald)</li>
+</ul>
+<h2 id="170-2024-01-07">1.7.0 (2024-01-07)<a class="headerlink" href="#170-2024-01-07" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add support for ruby 3.3.*  (Charlie Savage)</li>
+<li>Remove support for ruby 2.7.*  (Charlie Savage)</li>
+<li>Fix crash caused by referencing Profile Ruby objects from Method objects that were being moved
+  by GC compaction (Charlie Savage)</li>
+</ul>
+<h2 id="163-2023-04-20">1.6.3 (2023-04-20)<a class="headerlink" href="#163-2023-04-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Remove debug code unintentionally left in ruby-prof command line program (Charlie Savage)</li>
+</ul>
+<h2 id="162-2023-04-17">1.6.2 (2023-04-17)<a class="headerlink" href="#162-2023-04-17" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix Profile#merge! implementation (asksurya)</li>
+<li>Fix ruby-prof command line program (Charlie Savage)</li>
+<li>Added CMakeLists.txt file (Charlie Savage)</li>
+</ul>
+<h2 id="161-2023-02-21">1.6.1 (2023-02-21)<a class="headerlink" href="#161-2023-02-21" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix loading C extension for MacOS (Charlie Savage)</li>
+</ul>
+<h2 id="160-2023-02-20">1.6.0 (2023-02-20)<a class="headerlink" href="#160-2023-02-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add support for Ruby's compacting garbage collector (Charlie Savage)</li>
+<li>Add rbs signature files (Charlie Savage)</li>
+<li>Update rack adapter used for profiling Rails to include latest ruby-prof features (Charlie Savage)</li>
+<li>Add warnings for deprecated methods (Charlie Savage)</li>
+<li>Update tests to not use deprecated methods (Charlie Savage)</li>
+<li>Improve tests on OSX (Charlie Savage)</li>
+</ul>
+<h2 id="150-2023-02-06">1.5.0 (2023-02-06)<a class="headerlink" href="#150-2023-02-06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add new Profile#merge! method that merges results for threads/fibers that share the same root method (Charlie Savage)</li>
+<li>Expand API to allow creation of +Measurement+, +CallTree+, +MethodInfo+ and +Thread+ instances. This
+ was done to make is possible to write tests for the new Profile#merge! functionality (Charlie Savage)</li>
+</ul>
+<h2 id="145-2022-12-27">1.4.5 (2022-12-27)<a class="headerlink" href="#145-2022-12-27" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Look for ruby_prof extension built on install in the lib directory (Charlie Savage)</li>
+<li>Added Ruby 3.2.0 build for mingw-urct</li>
+</ul>
+<h2 id="144-2022-12-11">1.4.4 (2022-12-11)<a class="headerlink" href="#144-2022-12-11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Update tests for Ruby 3.1 (Charlie Savage)</li>
+<li>When tracing allocations always use the RUBY_INTERNAL_EVENT_NEWOBJ trace event. Previously GC stats could also be used, but that includes the creation of internal T_IMEMO objects makes reviewing results confusing (Charlie Savage)</li>
+<li>Remove :profile option that lets a user set the prefix on callgrind output files since KCacheGrind will not automatically show these files in its open dialog. Fixes #313. (Charlie Savage)</li>
+<li>Don't expose threads to Ruby that don't have a call tree. This can happen when a user is profiling memory usage and then sends a signint to the profiled process. New objects will be created in a new thread, but no method enter/exit trace events are generated by Ruby. Thus the thread has no call tree. Fixes #312 (Charlie Savage)</li>
+<li>Update github Actions - change 3.0 to '3.0', add Windows mswin (MSP-Greg)</li>
+<li>Add Ruby 3.1 to test matrix (Charlie Savage)</li>
+<li>Use normal weight text instead of bold in call strack printer output. Fixes #297 (Charlie Savage)</li>
+<li>Update VC project to Ruby 3.1 and Visual Studio 2022 (Charlie Savage)</li>
+<li>Fix marshaling of profile measure. Fixes #315 (Charlie Savage)</li>
+<li>CI: Omit duplicate 'bundle install'. PR #309 (Olle Jonsson)</li>
+<li>Fix typo. s/perecent/percent/ (Paarth Madan)</li>
+<li>Remove support for Ruby 2.5 and 2.6 which are now end of life (Charlie Savage)</li>
+</ul>
+<h2 id="143-2021-02-16">1.4.3 (2021-02-16)<a class="headerlink" href="#143-2021-02-16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Remove trailing spaces (sergioro)</li>
+<li>Load "ruby-prof.so" with require_relative (sergioro)</li>
+<li>Use same file permissions for all test files (sergioro)</li>
+<li>Create tmp directory for test output (sergioro)</li>
+<li>Update git-ignore to add mkmf log (sergioro)</li>
+<li>Fix minitest warning about using MT_CPU instead of N (sergioro)</li>
+<li>Fix minitest warning "Use assert_nil if expecting nil (sergioro)</li>
+<li>Add xcode project (Charlie Savage)</li>
+<li>Update test for Ruby 3.0 (Charlie Savage)</li>
+<li>Remove Ruby 2.4 support since it is no longer maintained (Charlie Savage)</li>
+<li>Replace travis status badge with github status badge (Charlie Savage)</li>
+</ul>
+<h2 id="142-2020-11-3">1.4.2 (2020-11-3)<a class="headerlink" href="#142-2020-11-3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do NOT use Ruby 2.7.0 and 2.7.1 with ruby-prof. A bug in those versions of ruby causes ruby-prof to
+not work. Version 2.7.2 works correctly.</li>
+<li>Fix crash caused be reallocating an internal stack that keeps tracks of frames <em>after</em> getting a reference to the
+top frame in the stack (Charlie Savage).</li>
+<li>Fix bug where the flat printer did not correctly report the correct measurement mode.</li>
+</ul>
+<h2 id="141-2020-05-14">1.4.1 (2020-05-14)<a class="headerlink" href="#141-2020-05-14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix compiling on older versions of gcc that do not default to c99 (Charlie Savage)</li>
+</ul>
+<h2 id="140-2020-05-12">1.4.0 (2020-05-12)<a class="headerlink" href="#140-2020-05-12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>API change - remove merge_fibers support since it resulted in incorrect results or crashes (Charlie Savage)</li>
+<li>Fix crash when profiling memory usage (Charlie Savage)</li>
+<li>When tracing execution correctly print out newobj tracepoint events (Charlie Savage)</li>
+<li>Remove no longer needed code for building extensions (Charlie Savage)</li>
+</ul>
+<h2 id="132-2020-04-19">1.3.2 (2020-04-19)<a class="headerlink" href="#132-2020-04-19" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix rack profiler so it is thread safe (Charlie Savage)</li>
+<li>Fix loading of prebuilt binaries on mingw64 to use Ruby's major and minor version (Charlie Savage)</li>
+</ul>
+<h2 id="131-2020-03-11">1.3.1 (2020-03-11)<a class="headerlink" href="#131-2020-03-11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add max_percent and filter_by options to flat printer (Sean McGivern)</li>
+<li>Include binary in mingw64 build (Charlie Savage)</li>
+</ul>
+<h2 id="130-2020-02-22">1.3.0 (2020-02-22)<a class="headerlink" href="#130-2020-02-22" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Update C code to use newer RTypedData API versus older RData API.</li>
+<li>Update C code to use rb_cObject versus the older, deprecated, rb_cData.</li>
+<li>Update memory management - CallInfo's now keep alive their owning Profile instances. Fixes crashes that
+  could happen in rare instances.</li>
+</ul>
+<h2 id="120-2020-01-23">1.2.0 (2020-01-23)<a class="headerlink" href="#120-2020-01-23" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix call stack printer broken in version 1.0.0 (Charlie Savage)</li>
+<li>Ruby 2.7.0 support (Charlie Savage)</li>
+<li>Switch to Windows high precision timer for measuring wall time (Charlie Savage)</li>
+<li>Much better support for reverse call trees - if you start RubyProf at the bottom
+  of a call tree it will correctly calculate times as it ascends the tree (Charlie Savage)</li>
+<li>Port AggregateCallInfo from Ruby to C to increase performance</li>
+<li>API change - CallInfo has been renamed CallTree</li>
+<li>Fix crashes on Ruby 2.4.*</li>
+</ul>
+<h2 id="110-2019-12-14">1.1.0 (2019-12-14)<a class="headerlink" href="#110-2019-12-14" title="Permanent link">&para;</a></h2>
+<p>Changes</p>
+<ul>
+<li>Reimplement merge_fibers (Charlie Savage)</li>
+<li>Fix crash caused by threads being freed when profiles are freed (Charlie Savage)</li>
+</ul>
+<h2 id="100-2019-07-29">1.0.0 (2019-07-29)<a class="headerlink" href="#100-2019-07-29" title="Permanent link">&para;</a></h2>
+<p>ruby-prof's development stretches all the way back to 2005. Fourteen years later, it seems time for version 1.0!
+Version 1.0 is a significant update that greatly improves the internals of ruby-prof and adds a number of improvements.</p>
+<p>Changes (Charlie Savage):</p>
+<ul>
+<li>Profiling is significantly faster - 5x in some cases</li>
+<li>Recursive profiles are finally handled correctly.  Yeah!!!</li>
+<li>Redesigned reports (Chirs Whitefield)</li>
+<li>New documentation website (<a href="https://ruby-prof.github.io">https://ruby-prof.github.io</a>)</li>
+<li>The ability to measure allocations and memory usage using a standard (unpatched) version of ruby</li>
+<li>The ability to save and reload profiling results for later analysis</li>
+<li>The ability track object allocations</li>
+</ul>
+<p>At the same time, it was also time to remove old code and deprecated methods. These changes include (Charlie Savage):</p>
+<ul>
+<li>Drop support for old versions of ruby. Currently 2.4 and up are required.</li>
+<li>Remove support for method elimination (instead use method exclusion).</li>
+<li>Remove the CPU_TIME measurement mode since it duplicates the PROCESS_TIME mode and required inline assembly code</li>
+<li>Remove the GC_TIME and GC_RUNS measurement modes since they required patched ruby versions. In modern ruby it is possible to reimplement this functionality, but it does not seem of that much value (shout out if you want it back).</li>
+<li>Merge the RubyProf::FlatPrinterWithLineNumbers printer into RubyProf::FlatPrinter.</li>
+<li>Removed support for RUBY_PROF_EDITOR_URI environment variable that specified the link scheme. This features was more confusing then helpful.</li>
+</ul>
+<h2 id="0180-2019-05-27">0.18.0 (2019-05-27)<a class="headerlink" href="#0180-2019-05-27" title="Permanent link">&para;</a></h2>
+<h3 id="fixes">Fixes<a class="headerlink" href="#fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fix grouping by thread/fiber (Charlie Savage)</li>
+<li>Fix include/exclude thread checking (Charlie Savage)</li>
+<li>Fix failing tests (Charlie Savage)</li>
+<li>Fix grouping by thread_id and fiber_id (Charlie Savage)</li>
+<li>Update Visual Studio solution to 2019 (Charlie Savage)</li>
+<li>Adjust AbstractPrinter#editor_uri so it's possible to disable uri (Maciek Dubiński)-</li>
+<li>Fix -X/--exclude-file option not working (John Lindgren)</li>
+<li>Different directory for middleware output in readme (Aldric Giacomoni)</li>
+<li>Fixing spelling mistakes and typos (David Kennedy and Roger Pack)</li>
+<li>Add "allow_exceptions" option to Profile (Ryan Duryea)</li>
+<li>Update readme (Jan Piotrowski, Nathan Seither, victor-am)</li>
+<li>Travis updates (Niocals Leger and Charlie Savage)</li>
+<li>Fix NewRelic module detection in exclude_common_methods! (Ben Hughes)</li>
+</ul>
+<h2 id="0170-2017-12-17">0.17.0 (2017-12-17)<a class="headerlink" href="#0170-2017-12-17" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Changed method/class names produced by the callgrind printer to be more kcachegrind
+  friendly (thx to Nelson Gauthier and Ben Hughes, see <a href="https://github.com/ruby-prof/ruby-prof/pull/200">https://github.com/ruby-prof/ruby-prof/pull/200</a>).</li>
+<li>Recursive instances of a method call are now dtected during profiling (thx to Nelson Gauthier and
+  Ben Hughes, see <a href="https://github.com/ruby-prof/ruby-prof/pull/201">https://github.com/ruby-prof/ruby-prof/pull/201</a>).</li>
+<li>Methods can now be ignored during a profiling run instead of eliminating them
+  after a profile run, which has been deprecated (thx to Nelson Gauthier and Ben Hughes,
+  see <a href="https://github.com/ruby-prof/ruby-prof/pull/202">https://github.com/ruby-prof/ruby-prof/pull/202</a>).</li>
+<li>Use RUBY_PROF_EDITOR_URI=emacs to open source code links in the one true editor.
+  (thx Alexander Egorov, see <a href="https://github.com/ruby-prof/ruby-prof/pull/183">https://github.com/ruby-prof/ruby-prof/pull/183</a> and
+  <a href="https://github.com/typester/emacs-handler">https://github.com/typester/emacs-handler</a>).</li>
+<li>Fixed that calling profile.stop would stop profiling all active profiling runs.</li>
+<li>Fixed that remembering parent call frame pointer before stack reallocation could cause a segfault.</li>
+</ul>
+<h2 id="0162-2016-08-25">0.16.2 (2016-08-25)<a class="headerlink" href="#0162-2016-08-25" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fixed incorrect setting of RUBY_VERSION macro</li>
+</ul>
+<h2 id="0161-2016-08-24">0.16.1 (2016-08-24)<a class="headerlink" href="#0161-2016-08-24" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fixed compile problem with ruby 2.1.10</li>
+</ul>
+<h2 id="0160-2016-08-24">0.16.0 (2016-08-24)<a class="headerlink" href="#0160-2016-08-24" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ruby-prof can now be installed if ruby has been compiled with --disable-gems or
+  RUBYOPT includes --disable-gems (thx to Arthur Nogueira Neves)</li>
+<li>Profile.new now accepts and prefers an options hash:</li>
+<li>measure_mode: one of the RubyProf measure mode constants</li>
+<li>exclude_threads: an array of threads to ignore when collecting profile data</li>
+<li>include_threads: an array of threads to include when collecting profile data</li>
+<li>merge_fibers: whether or not to merge the profile data for all fibers under their creating thread</li>
+<li>overhauled printer for cachegrind profiles:</li>
+<li>profile data for each thread dumped to a separate file, as kcachegrind does not
+    fully implement the cachegrind specification</li>
+<li>this required a change in interface: it's now necessary to specify a directory
+    where to dump the cachegrind files</li>
+<li>naming convention for cachegrind files changed so that kcachegrind shows them
+    all in the open dialog</li>
+<li>improved Rack middleware:</li>
+<li>it's now possible to use the MultiPrinter</li>
+<li>new option ignore_existing_threads: will ignore all prexisiting threads
+    when profiling a request, except the thread perfoming the request.</li>
+<li>new option request_thread_only: will ignore all preexisting threads, but also
+    all threads spwaned during the execution of the rack request.</li>
+<li>new option merge_fibers: whether or not to merge the profile data for all fibers under their creating thread</li>
+<li>fixed setting threshold bug when displaying stack profiles (thx to Michal Konarski)</li>
+<li>code related to printing profiles is now autoloaded for efficiency (thx to Dave Gynn)</li>
+</ul>
+<h2 id="0159-2015-12-08">0.15.9 (2015-12-08)<a class="headerlink" href="#0159-2015-12-08" title="Permanent link">&para;</a></h2>
+<ul>
+<li>rack profiler now supports lambdas for generating profile paths (thx to Jean Rougé)</li>
+<li>fixed a bug when printing graph profiles</li>
+</ul>
+<h2 id="0158-2015-04-24">0.15.8 (2015-04-24)<a class="headerlink" href="#0158-2015-04-24" title="Permanent link">&para;</a></h2>
+<ul>
+<li>added missing assets to gem build</li>
+<li>fixed randomly failing test</li>
+</ul>
+<h2 id="0157-2015-04-23">0.15.7 (2015-04-23)<a class="headerlink" href="#0157-2015-04-23" title="Permanent link">&para;</a></h2>
+<ul>
+<li>html profiles are now single page (thx to Thomas Leishman)</li>
+</ul>
+<h2 id="0156-2015-02-22">0.15.6 (2015-02-22)<a class="headerlink" href="#0156-2015-02-22" title="Permanent link">&para;</a></h2>
+<ul>
+<li>improved upon computing children time in graph printers</li>
+</ul>
+<h2 id="0155-2015-02-22">0.15.5 (2015-02-22)<a class="headerlink" href="#0155-2015-02-22" title="Permanent link">&para;</a></h2>
+<ul>
+<li>changed output format of flat_printer_with_line_number</li>
+<li>support using multi printer from command line (Dov Murik)</li>
+</ul>
+<h2 id="0154-2015-02-14">0.15.4 (2015-02-14)<a class="headerlink" href="#0154-2015-02-14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>using env variable to specify mesaurement mode work again</li>
+<li>measuring memory/object allocations works for 2.1 adn 2.2 again</li>
+</ul>
+<h2 id="0153-2015-01-16">0.15.3 (2015-01-16)<a class="headerlink" href="#0153-2015-01-16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>support ruby 2.2.0</li>
+</ul>
+<h2 id="0152-2014-05-20">0.15.2 (2014-05-20)<a class="headerlink" href="#0152-2014-05-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>rack middleware creates print dir for profile result (Neng)</li>
+</ul>
+<h2 id="0151-2014-05-20">0.15.1 (2014-05-20)<a class="headerlink" href="#0151-2014-05-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>added license to gemspec</li>
+</ul>
+<h2 id="0150-2014-05-02">0.15.0 (2014-05-02)<a class="headerlink" href="#0150-2014-05-02" title="Permanent link">&para;</a></h2>
+<ul>
+<li>improved cpu time measurement (Charlie Somerville)</li>
+</ul>
+<h2 id="0142-2014-01-05">0.14.2 (2014-01-05)<a class="headerlink" href="#0142-2014-01-05" title="Permanent link">&para;</a></h2>
+<ul>
+<li>hopefully fixed compile problem under Windows</li>
+</ul>
+<h2 id="0140-2014-01-02">0.14.0 (2014-01-02)<a class="headerlink" href="#0140-2014-01-02" title="Permanent link">&para;</a></h2>
+<ul>
+<li>support ruby 2.1.0</li>
+<li>dropped support for 1.8.x, 1.9.1 and 1.9.2</li>
+</ul>
+<h2 id="0131-2013-12-14">0.13.1 (2013-12-14)<a class="headerlink" href="#0131-2013-12-14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>speed up for displaying large call stacks (Benjamin Quoming)</li>
+</ul>
+<h2 id="013-2013-03-10">0.13 (2013-03-10)<a class="headerlink" href="#013-2013-03-10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>support fibers on 1.9.x+</li>
+<li>improved display for very wide call stacks (Sammy Larbi)</li>
+</ul>
+<h2 id="0122-2013-02-13">0.12.2 (2013-02-13)<a class="headerlink" href="#0122-2013-02-13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fixed segfault when using falcon or railsexpress patches for 1.9.3</li>
+</ul>
+<h2 id="0121-2013-01-07">0.12.1 (2013-01-07)<a class="headerlink" href="#0121-2013-01-07" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add back in pause/resume support since Rails uses it</li>
+</ul>
+<h2 id="0120-2013-01-06">0.12.0 (2013-01-06)<a class="headerlink" href="#0120-2013-01-06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ruby 2.0.0 support (Charlie Savage)</li>
+<li>Fix issue where profiling results could exceed 100% if profile code had multiple top level methods (Charlie Savage)</li>
+<li>Replaced RubyProf::Thread#top_method with RubyProf::Thread#top_methods (Charlie Savage)</li>
+<li>Added RubyProf::Thread#total_time (Charlie Savage)</li>
+<li>Remove the -r and -e command line options.  If you need specific libraries or code profiled then add them
+  to your code (Charlie Savage).</li>
+<li>Rewrite ruby-prof script to be more self-contained (Gary Weaver)</li>
+<li>Fix list formatting in readme (Thilo Rusche)</li>
+<li>Remove pause/resume support since its buggy and complicates the code</li>
+</ul>
+<h2 id="0113-2012-12-27">0.11.3 (2012-12-27)<a class="headerlink" href="#0113-2012-12-27" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Prefix c functions with prof_ to avoid name conflicts (Kenta Murata)</li>
+<li>Update ruby-prof script to avoid seg faults (Gary Weaver)</li>
+<li>Rakefile updates (Roger Pack)</li>
+<li>Fix regexp file reading (Gilbert Roulot)</li>
+<li>Update documentation (Timo Schilling)</li>
+<li>Fix up ruby warnings (Mike Gehard)</li>
+<li>Remove duplicate code (Chas Lemley)</li>
+</ul>
+<h2 id="0112-2012-05-06">0.11.2 (2012-05-06)<a class="headerlink" href="#0112-2012-05-06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix compile issue with BOOL.  Should be _Bool for C99.</li>
+</ul>
+<h2 id="0111-2012-05-06">0.11.1 (2012-05-06)<a class="headerlink" href="#0111-2012-05-06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added option --exclude-common-callbacks, plus exclude #map and #inject in common cycles (Vasily Fedoseyev)</li>
+<li>Add option --exclude-common-cycles to exclude common iterators (Vasily Fedoseyev)</li>
+<li>Allow method elimination from command line via '-x' and '-X' keys (Vasily Fedoseyev)</li>
+</ul>
+<h2 id="0110-2012-05-05">0.11.0 (2012-05-05)<a class="headerlink" href="#0110-2012-05-05" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix pause/resume so it actually works and add tests (David Barri)</li>
+<li>Resume now returns the result of the block when given (David Barri)</li>
+<li>Make recursive method explanation more clear (Charlie Savage)</li>
+<li>Fix ruby warnings (Charlie Savage)</li>
+<li>Toggle GC.enable_stats when profiling for memory to get the data (Vasily Fedoseyev)</li>
+<li>Fix patched ruby support and remove some warnings (Vasily Fedoseyev)</li>
+<li>Fix tests on 1.8.7 (rogerdpack)</li>
+</ul>
+<h2 id="0110rc3-2012-03-26">0.11.0.rc3 (2012-03-26)<a class="headerlink" href="#0110rc3-2012-03-26" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Include missing files in gemspec (Charlie Savage).</li>
+</ul>
+<h2 id="0110rc2-2012-03-25">0.11.0.rc2 (2012-03-25)<a class="headerlink" href="#0110rc2-2012-03-25" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Lots of improvements to Rack handler - this can be used to profile requests
+  in Rails and other rack-based ruby web frameworks (Charlie Savage).</li>
+<li>Reimplemented handling of recursive calls using CallInfoVisitor (Charlie Savage).</li>
+<li>Fix bug where child times were not correctly reported in complicated
+  call graphs with recursion like in frameworks like Rails (Charlie Savage).</li>
+<li>Add in recursive call information to Flat, Graph and Graph HTML reports (Charlie Savage).</li>
+<li>Add in new thread class add added RubyProf::Thread#top_method to
+  make report generation easier (Charlie Savage).</li>
+<li>Add in CallInfoVisitor class to make it easy to iterate over a call graph (Charlie Savage).</li>
+<li>Add in CallInfoPrinter to make it visualize RubyProf's internal call graphs (Charlie Savage).</li>
+<li>Significant updates to documentation (Charlie Savage).</li>
+<li>More c code cleanup (Charlie Savage).</li>
+</ul>
+<h2 id="0110rc1-2012-03-24">0.11.0.rc1 (2012-03-24)<a class="headerlink" href="#0110rc1-2012-03-24" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Big internal refactoring of C code to make RubyProf easier to understand and extend (Charlie Savage).</li>
+<li>Profile results are now returned as instances of a new class RubyProf::Profile.  The old api
+  is supported via a compatability layer that at some point will be deprecated.  (Charlie Savage).</li>
+<li>On Windows, use QueryPerformanceCounter and QueryPerformanceFrequency to measure CPU time instead
+  of rdtsc.  This change is based on Microsoft's recommendation (Charlie Savage).</li>
+<li>On Windows use GetProcessTimes to return real PROCESS_TIME times instead of wall times (Charlie Savage).</li>
+<li>Split out tests for each time of measurement (cpu_time, process_time, etc.) (Charlie Savage).</li>
+<li>Dropped support for Ruby 1.8.4 and 1.8.6 and 1.9.0 (Charlie Savage).</li>
+<li>Added support for sorting results by total, self, wait and child times (Jan Suchal)</li>
+<li>Added tests for sorting behaviour &amp; removed options from constructor to print method (Jan Suchal)</li>
+<li>Fix line number tests due to changes at top of file (Charlie Savage).</li>
+<li>Add encoding statement to top of all files for Ruby 1.9.x compatability (Charlie Savage).</li>
+<li>Add def file for VC to avoid the whole declspec annoyance (Charlie Savage).</li>
+<li>Update test suite to ensure current working directory is correct (Charlie Savage).</li>
+<li>Modernize gem file and remove various custom/home grown solutions that aren't needed anymore (Charlie Savage).</li>
+<li>Remove custom mingw build scripts, use rake compiler instead  (Charlie Savage).</li>
+<li>Fixes for compiling with VC 2010 (Charlie Savage).</li>
+</ul>
+<h2 id="0108-2011-07-06">0.10.8 (2011-07-06)<a class="headerlink" href="#0108-2011-07-06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>1.9.3 super class (Roger Pack)</li>
+</ul>
+<h2 id="0107-2011-05-09">0.10.7 (2011-05-09)<a class="headerlink" href="#0107-2011-05-09" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix a bug with REE's GC stats. Issue #53 [thanks graaff]</li>
+</ul>
+<h2 id="0106-2011-04-29">0.10.6 (2011-04-29)<a class="headerlink" href="#0106-2011-04-29" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Slightly more normalized url for linux/windows links to files.</li>
+</ul>
+<h2 id="0105-2011-04-20">0.10.5 (2011-04-20)<a class="headerlink" href="#0105-2011-04-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>1.8.6 compat for -v command (bug fix)</li>
+</ul>
+<h2 id="0104-2011-04-20">0.10.4 (2011-04-20)<a class="headerlink" href="#0104-2011-04-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Faster load time for ruby-prof itself.</li>
+</ul>
+<h2 id="0103">0.10.3<a class="headerlink" href="#0103" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Can cleanly load before rubygems now.</li>
+</ul>
+<h2 id="0102">0.10.2<a class="headerlink" href="#0102" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix for 1.9.2, os x for latest commits (thanks skaes!)</li>
+</ul>
+<h2 id="0101">0.10.1<a class="headerlink" href="#0101" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix bug in linux wall time, also load with only relative paths so that you can use it to benchmark rubygems startup overhead,
+  itself.</li>
+</ul>
+<h2 id="0100">0.10.0<a class="headerlink" href="#0100" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Some rdoc changes, for linux wall time attempt to use higher granularity (thanks to all the contributors for this round!)</li>
+</ul>
+<h2 id="092">0.9.2<a class="headerlink" href="#092" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Make graphviz work on 1.8.6</li>
+<li>Roll back some 1.9.2 optimizations until I can figure out what caused them.</li>
+</ul>
+<h2 id="091">0.9.1<a class="headerlink" href="#091" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add a graphviz output</li>
+</ul>
+<h2 id="090">0.9.0<a class="headerlink" href="#090" title="Permanent link">&para;</a></h2>
+<ul>
+<li>measurements for recursive methods are now correct</li>
+<li>gave up on splitting up recursive methods according to call depth</li>
+<li>made it possible to eliminate methods from profiling results</li>
+<li>new printer for call stack visualization</li>
+<li>new printer to print several profiles in one run</li>
+<li>HTML profiles contain Textmate links so you can jump to the source code easily</li>
+<li>producing an event log is now a runtime option</li>
+</ul>
+<h2 id="0710-2009-01-22">0.7.10 (2009-01-22)<a class="headerlink" href="#0710-2009-01-22" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fix SEGFAULT in 1.9</li>
+<li>add new printer flat_printer_with_line_numbers</li>
+</ul>
+<h2 id="077-2009-01-13">0.7.7 (2009-01-13)<a class="headerlink" href="#077-2009-01-13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>"fix" multi threading support for 1.9 <a href="http://redmine.ruby-lang.org/issues/show/2012">http://redmine.ruby-lang.org/issues/show/2012</a></li>
+<li>speedups</li>
+</ul>
+<h2 id="076-2009-12-31">0.7.6 (2009-12-31)<a class="headerlink" href="#076-2009-12-31" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fix some tests for 1.9 (no real code changes)</li>
+</ul>
+<h2 id="075-2009-12">0.7.5 (2009-12)<a class="headerlink" href="#075-2009-12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fix a GC collection bug (nobu's patch).</li>
+<li>correctly report recursive call depths (Kevin Scaldeferri).</li>
+<li>sort methods on output (Kevin Scaldeferri).</li>
+</ul>
+<h2 id="073-2008-12-09">0.7.3 (2008-12-09)<a class="headerlink" href="#073-2008-12-09" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fixed compile error with new x86_64 code using GCC.</li>
+</ul>
+<h2 id="072-2008-12-08">0.7.2 (2008-12-08)<a class="headerlink" href="#072-2008-12-08" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Fixed major bug in printing child methods in graph reports.</p>
+</li>
+<li>
+<p>Fixes for supporting x86_64 machines (Diego Pettenò)</p>
+</li>
+</ul>
+<h2 id="071-2008-11-28">0.7.1 (2008-11-28)<a class="headerlink" href="#071-2008-11-28" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added new AggregateCallTree class for printers to
+  make results easier to read.  Take this call sequence
+  for example:</li>
+</ul>
+<p>A   B   C
+   |   |   |
+   Z   A   A
+       |   |
+       Z   Z</p>
+<p>By default, ruby-prof will show that Z was called by 3 separate
+  instances of A.  In an IDE that is helpful but in a text report
+  it is not since it makes the report much harder to read.
+  As a result, printers now aggregate together callers (and children),
+  matching ruby-prof's output from versions prior to 0.7.0.</p>
+<ul>
+<li>Fixes for supporting x86_64 machines (Matt Sanford)</li>
+</ul>
+<h2 id="070-2008-11-04">0.7.0 (2008-11-04)<a class="headerlink" href="#070-2008-11-04" title="Permanent link">&para;</a></h2>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added two new methods - RubyProf.resume and RubyProf.pause.
+  RubyProf.resume takes an optional block, which ensures that
+  RubyProf.pause is called.  For example:</li>
+</ul>
+<p>10.times do |i|
+    RubyProf.resume do
+      # Some long process
+    end
+  end</p>
+<p>result = RubyProf.stop</p>
+<ul>
+<li>
+<p>Added support for profiling tests that use Ruby's built-in
+  unit test framework (ie, test derived from
+  Test::Unit::TestCase).  To enable profiling simply add
+  the following line of code to your test class:</p>
+<p>include RubyProf::Test</p>
+</li>
+</ul>
+<p>By default, profiling results are written to the current
+  processes working directory.  To change this, or other
+  profiling options, simply modify the PROFILE_OPTIONS hash
+  table as needed.</p>
+<ul>
+<li>
+<p>Used the new support for profiling test cases to revamp
+  the way that Rails profiling works.  For more information
+  please refer to RubyProf's documentation.</p>
+</li>
+<li>
+<p>Keep track of call stack for each method to enable more
+  powerful profile visualizations in Integrated Development
+  Environments (Hin Boean, work supported by CodeGear).</p>
+</li>
+<li>
+<p>Expose measurements to Ruby (Jeremy Kemper).</p>
+</li>
+<li>
+<p>Add support for additional memory measurements modes in Ruby 1.9 (Jeremy Kemper).</p>
+</li>
+<li>
+<p>Add support for Lloyd Hilaiel's Ruby patch for measuring total heap size.
+   See <a href="http://lloydforge.org/projects/ruby">http://lloydforge.org/projects/ruby</a>. (Jeremy Kemper).</p>
+</li>
+</ul>
+<h3 id="fixes_1">Fixes<a class="headerlink" href="#fixes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>RubyProf.profile no longer crashes if an exception is
+  thrown during a profiling run.</p>
+</li>
+<li>
+<p>Measure memory in fractional kilobytes rather than rounding down (Jeremy Kemper)</p>
+</li>
+</ul>
+<h2 id="060-2008-02-03">0.6.0 (2008-02-03)<a class="headerlink" href="#060-2008-02-03" title="Permanent link">&para;</a></h2>
+<p>ruby-prof 0.6.0 adds support for Ruby 1.9 and memory profiling.</p>
+<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added support for ruby 1.9 (Shugo Maeda)</li>
+<li>Added support for outputting printer results to a String, Array or IO
+  object (Michael Granger)</li>
+<li>Add new memory profiling mode.  Note this mode depends on a
+  patched Ruby interpreter (Alexander Dymo)</li>
+</ul>
+<h3 id="fixes_2">Fixes<a class="headerlink" href="#fixes_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Improvements to GraphHtmlPrinter including updated documentation,
+  fixes for min_time support, ability to specify templates using
+  strings or filenames, and table layout fixes (Makoto Kuwata)</li>
+<li>Fixes to scaling factor for calltrees so that precision is not lost
+  due to the conversion to doubles (Sylvain Joyeux)</li>
+<li>Changed constant ALLOCATED_OBJECTS to ALLOCATIONS in the C code to
+  match the Ruby code (Sylvain Joyeux)</li>
+<li>Added support for calltree printer to ruby-prof binary script (Sylvain Joyeux)</li>
+<li>Fix support for the allocator measure mode to extconf.rb (Sylvain Joyeux)</li>
+<li>Honor measure mode when specified on the command line (Sylvain Joyeux)</li>
+<li>Sorting of methods by total time was incorrect (Dan Fitch, Charlie Savage)</li>
+<li>Fix ruby-prof to work with the latest version of GEMS (Alexander Dymo)</li>
+<li>Always define MEASURE_CPU_TIME and MEASURE_ALLOCATIONS in Ruby code, but
+  set their values to nil if the functionality is not available.</li>
+</ul>
+<h2 id="052-2007-07-19">0.5.2 (2007-07-19)<a class="headerlink" href="#052-2007-07-19" title="Permanent link">&para;</a></h2>
+<p>ruby-prof 0.5.2 is a bug fix release.</p>
+<h3 id="fixes_3">Fixes<a class="headerlink" href="#fixes_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Include missing rails plugin</li>
+</ul>
+<h2 id="051-2007-07-18">0.5.1 (2007-07-18)<a class="headerlink" href="#051-2007-07-18" title="Permanent link">&para;</a></h2>
+<p>ruby-prof 0.5.1 is a bug fix and performance release.</p>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Significantly reduced the number of thread lookups by
+  caching the last executed thread.</li>
+</ul>
+<h3 id="fixes_4">Fixes<a class="headerlink" href="#fixes_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Properly escape method names in HTML reports</li>
+<li>Fix use of -m and --min-percent command line switches</li>
+<li>Default source file information to ruby_runtime#0 for c calls</li>
+<li>Moved rails_plugin to top level so it is more obvious</li>
+<li>Updated rails_plugin to write reports to the current
+  Rails log directory</li>
+<li>Added additional tests</li>
+</ul>
+<h2 id="050-2007-07-09">0.5.0 (2007-07-09)<a class="headerlink" href="#050-2007-07-09" title="Permanent link">&para;</a></h2>
+<h3 id="features_2">Features<a class="headerlink" href="#features_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added support for timing multi-threaded applications</li>
+<li>Added support for 64 bit systems (patch from Diego 'Flameeyes' Petten)</li>
+<li>Added suport for outputting data in the format used by
+  KCacheGrind (patch from Carl Shimer)</li>
+<li>Add filename and line numbers to call tree information (patch from Carl Shimer)</li>
+<li>Added Visual Studio 2005 project file.</li>
+<li>Added replace-progname switch, als rcov.</li>
+<li>Added better support for recursive methods</li>
+<li>Added better support for profiling Rails applications</li>
+</ul>
+<h3 id="fixes_5">Fixes<a class="headerlink" href="#fixes_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixes bug when the type of an attached object (singleton) is inherited
+  from T_OBJECT as opposed to being a T_OBJECT (identified by Francis Cianfrocca)</li>
+<li>ruby-prof now works in IRB.</li>
+<li>Fix sort order in reports.</li>
+<li>Fixed rdoc compile error.</li>
+<li>Fix tabs in erb template for graph html report on windows.</li>
+</ul>
+<h2 id="041-2006-06-26">0.4.1 (2006-06-26)<a class="headerlink" href="#041-2006-06-26" title="Permanent link">&para;</a></h2>
+<h3 id="features_3">Features<a class="headerlink" href="#features_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added a RubyProf.running? method to indicate whether a profile is in progress.</li>
+<li>Added tgz and zip archives to release</li>
+</ul>
+<h3 id="fixes_6">Fixes<a class="headerlink" href="#fixes_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Duplicate method names are now allowed</li>
+<li>The documentation has been updated to show the correct API usage is RubyProf.stop not RubyProf.end</li>
+</ul>
+<h2 id="040-2006-06-16">0.4.0 (2006-06-16)<a class="headerlink" href="#040-2006-06-16" title="Permanent link">&para;</a></h2>
+<h3 id="features_4">Features<a class="headerlink" href="#features_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>added support for call graphs</li>
+<li>added support for printers.  Currently there is a FlatPrinter,
+  GraphPrinter and GraphHtmlPrinter.</li>
+<li>added support for recursive methods</li>
+<li>added Windows support</li>
+<li>now packaged as a RubyGem</li>
+</ul>
+<h3 id="fixes_7">Fixes<a class="headerlink" href="#fixes_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixes bug where RubyProf would crash depending on the
+  way it was invoked - for example, it did not run when
+  used with Arachno Ruby's customized version of Ruby.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.36a64b72.min.js"></script>
+      
+    
+  </body>
+</html>
