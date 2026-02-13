@@ -16,14 +16,14 @@
         <link rel="prev" href="../profiling-rails/">
       
       
-        <link rel="next" href="../changelog/">
+        <link rel="next" href="../history/">
       
       
         
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.21">
+      <meta name="generator" content="zensical-0.0.23">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f28b7ce3.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.1e989742.min.css">
       
         
           
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ruby-prof" class="md-header__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+    <a href="./.." title="ruby-prof" class="md-header__button md-logo" aria-label="ruby-prof" data-md-component="logo">
       
   <img src="../public/images/ruby-prof-logo.svg" alt="logo">
 
@@ -209,7 +209,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ruby-prof" class="md-nav__button md-logo" aria-label="ruby-prof" data-md-component="logo">
+    <a href="./.." title="ruby-prof" class="md-nav__button md-logo" aria-label="ruby-prof" data-md-component="logo">
       
   <img src="../public/images/ruby-prof-logo.svg" alt="logo">
 
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="./.." class="md-nav__link">
         
   
   
@@ -400,7 +400,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -445,6 +445,61 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurer-and-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurer and Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calltree-and-methodinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CallTree and MethodInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#memory-management" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -459,6 +514,60 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alternatives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternatives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -529,6 +638,61 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurer-and-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurer and Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calltree-and-methodinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CallTree and MethodInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#memory-management" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -559,18 +723,105 @@
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>ruby-prof is a profiler for MRI Ruby. It's built as a C extension and therefore many times faster than the standard Ruby profiler. The image below shows the main classes that make up ruby-prof:</p>
-<p><img alt="Class Diagram" src="../../public/images/class_diagram.png" /></p>
-<p>The top level class is Profile, which is returned by a profiling run:</p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">.</span><span class="n">profile</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">            </span><span class="o">...</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">          </span><span class="k">end</span>
+<p>ruby-prof is a C extension that uses Ruby's <a href="https://docs.ruby-lang.org/en/master/TracePoint.html">TracePoint</a> API to intercept method calls and returns. Every time a method is entered or exited, ruby-prof records timing and (optionally) allocation data. This tracing approach means ruby-prof captures every method invocation, giving exact call counts and complete call graphs.</p>
+<p>The diagram below shows the main classes that make up ruby-prof:</p>
+<pre class="mermaid"><code>classDiagram
+    Profile "1" *-- "1" Measurer
+    Profile "1" *-- "*" Thread
+    Thread "1" *-- "1" Stack
+    Thread "1" *-- "*" MethodInfo
+    Thread "1" *-- "1" CallTree
+    Stack "1" o-- "*" Frame
+    Frame --&gt; CallTree
+    CallTree "1" *-- "1" Measurement
+    CallTree --&gt; MethodInfo : target
+    MethodInfo "1" *-- "1" CallTrees
+    MethodInfo "1" *-- "1" Measurement
+    MethodInfo "1" *-- "*" Allocation
+    CallTrees o-- "*" CallTree
+
+    class Profile {
+        +threads: Hash
+        +measurer: Measurer
+    }
+    class Measurer {
+        +mode: MeasurerMode
+        +track_allocations: boolean
+        +multiplier: double
+        +measure: function pointer
+    }
+    class Thread {
+        +methods: Hash
+        +stack: Stack
+        +callTree: CallTree
+    }
+    class Stack {
+        +frames: Array
+    }
+    class Frame {
+        +callTree: CallTree
+    }
+    class CallTree {
+        +parent: CallTree
+        +children: Hash
+        +target: MethodInfo
+        +measurement: Measurement
+    }
+    class MethodInfo {
+        +allocations: Hash
+        +callTrees: CallTrees
+        +measurement: Measurement
+    }
+    class Measurement {
+        +total_time: double
+        +self_time: double
+        +wait_time: double
+        +called: integer
+    }
+    class Allocation {
+        +count: integer
+        +source_file: string
+        +source_line: int
+        +klass: VALUE
+    }
+    class CallTrees {
+        +callTrees: Array
+    }</code></pre>
+<h2 id="profile">Profile<a class="headerlink" href="#profile" title="Permanent link">&para;</a></h2>
+<p>Profile is the top-level object returned by a profiling run:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="o">...</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">end</span>
 </span></code></pre></div>
-<p>A profile owns a hash of threads, and threads in turn own the methods called in that thread as well as call trees which record how the methods were called.</p>
+<p>A Profile owns a Measurer that determines what is being measured, and a collection of Threads representing each thread (or fiber) that was active during profiling.</p>
+<h2 id="measurer-and-measurement">Measurer and Measurement<a class="headerlink" href="#measurer-and-measurement" title="Permanent link">&para;</a></h2>
+<p>The <strong>Measurer</strong> controls what ruby-prof measures. It holds a function pointer that is called on every method entry and exit to take a measurement. The three modes are:</p>
+<ul>
+<li><strong>Wall time</strong> — elapsed real time</li>
+<li><strong>Process time</strong> — CPU time consumed by the process (excludes time spent in sleep or I/O)</li>
+<li><strong>Allocations</strong> — number of objects allocated</li>
+</ul>
+<p>Each CallTree and MethodInfo holds a <strong>Measurement</strong> that accumulates the results: total time, self time (excluding children), wait time (time spent waiting on other threads), and call count.</p>
+<h2 id="thread">Thread<a class="headerlink" href="#thread" title="Permanent link">&para;</a></h2>
+<p>Each Thread tracks the methods called on that thread and owns the root of a call tree. It also maintains an internal Stack of Frames used during profiling to track the current call depth.</p>
+<p><strong>Stack</strong> and <strong>Frame</strong> are transient — they exist only while profiling is active. A Frame records timing data for a single method invocation on the stack, including start time and time spent in child calls. When a method returns, its Frame is popped and the accumulated timing is transferred to the corresponding CallTree node.</p>
+<h2 id="calltree-and-methodinfo">CallTree and MethodInfo<a class="headerlink" href="#calltree-and-methodinfo" title="Permanent link">&para;</a></h2>
+<p>These two classes are central to ruby-prof and represent two different views of the same profiling data:</p>
+<ul>
+<li>
+<p><strong>CallTree</strong> records the calling structure — which method called which, forming a graph. Each node has a parent, children, and a reference to its target MethodInfo. A method that is called from two different call sites will have two separate CallTree nodes, each with its own Measurement. Recursive methods create cycles in the graph.</p>
+</li>
+<li>
+<p><strong>MethodInfo</strong> represents a single method regardless of where it was called from. It aggregates data across all call sites. Each MethodInfo holds a CallTrees collection that links back to every CallTree node that invoked that method, providing both caller and callee information.</p>
+</li>
+</ul>
+<p>This separation is what allows ruby-prof to generate both call graph reports (which show calling relationships) and flat reports (which show per-method totals).</p>
+<h2 id="allocation">Allocation<a class="headerlink" href="#allocation" title="Permanent link">&para;</a></h2>
+<p>When allocation tracking is enabled, each MethodInfo records the objects it allocated. An Allocation tracks the class of object created, the source location, and the count.</p>
 <h2 id="memory-management">Memory Management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h2>
-<p>The master object is the Profile object. Each Profile object is responsible for managing the memory of its child objects which are C structures. When the Profile object goes out of scope, it recursively frees all its objects. In the class diagram, this can be seen via the composition relationships. The owning object is denoted with a filled in black diamond. Thus a Profile frees its threads, Threads free their CallTrees and Methods, etc.</p>
-<p>You should always keep a reference to a Profile object so that you can generate profiling reports. However, RubyProf will keep a Profile object alive, even if it has no direct references, as long as there are live references to either a MethodInfo object or a CallTree object. This is done via the GC mark phase. CallTree instances mark their associated MethodInfo instances, and MethodInfo instances in turn mark their owning Profile instance.</p>
-<p>Starting with version 1.5 it is possible to create new instances of the Thread, CallTree and MethodInfo classes from Ruby. In general you won't need to use this functionality - it was added to make it easier to write tests. However, this functionality does complicate memory management because some objects are now owned by the C extension while others are owned by Ruby. To track this information an internal ownership flag was added to instances of these classes. RubyProf automatically handles this, but it is important to understand if you are reading or modifying the C code.</p>
+<p>The Profile object is responsible for managing the memory of its child objects, which are C structures. When a Profile is garbage collected, it recursively frees all its objects. In the class diagram, composition relationships (filled diamond) indicate ownership — a Profile frees its Threads, Threads free their CallTrees and MethodInfo instances, and so on.</p>
+<p>ruby-prof keeps a Profile alive as long as there are live references to any of its MethodInfo or CallTree objects. This is done via Ruby's GC mark phase: CallTree instances mark their associated MethodInfo, and MethodInfo instances mark their owning Profile.</p>
+<p>Starting with version 1.5, it is possible to create Thread, CallTree and MethodInfo instances from Ruby (this was added to support testing). These Ruby-created objects are owned by Ruby's garbage collector rather than the C extension. An internal ownership flag on each instance tracks who is responsible for freeing it.</p>
 
 
 
@@ -626,7 +877,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.36a64b72.min.js"></script>
+      <script src="../assets/javascripts/bundle.5fcf0de6.min.js"></script>
       
     
   </body>
