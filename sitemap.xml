@@ -13,6 +13,9 @@
         <loc>https://ruby-prof.github.io/reports/</loc>
       </url>
       <url>
+        <loc>https://ruby-prof.github.io/best-practices/</loc>
+      </url>
+      <url>
         <loc>https://ruby-prof.github.io/profiling-rails/</loc>
       </url>
       <url>
