@@ -427,6 +427,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../best-practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../profiling-rails/" class="md-nav__link">
         
   
@@ -717,16 +744,17 @@
 <p>To create a new profile:</p>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;ruby-prof&#39;</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">measure_mode</span><span class="p">:</span><span class="w"> </span><span class="no">RubyProf</span><span class="o">::</span><span class="no">WALL_TIME</span><span class="p">)</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="o">.</span><span class="n">profile</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">           </span><span class="o">...</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">         </span><span class="k">end</span>
 </span></code></pre></div>
-<p>Once a profile is completed, you can either generate a <a href="../reports/">report</a> via a printer or <a href="../advanced-usage/#saving-results">save</a> the results for later analysis. For a list of profiling options, please see the <a href="../advanced-usage/#profiling-options">Profiling Options</a> section.</p>
+<p>Once a profile is completed, you can either generate a <a href="../reports/">report</a> via a printer or <a href="../advanced-usage/#saving-results">save</a> the results for later analysis. For a list of profiling options, please see the <a href="../advanced-usage/#profiling-options">Profiling Options</a> section.
+If you are unsure which report to generate first, see <a href="../reports/#choosing-a-report">Choosing a Report</a>.</p>
 <p>However, using ruby-prof also comes with two caveats:</p>
 <ul>
 <li>To use ruby-prof you generally need to include a few lines of extra code in your program (although see <a href="../getting-started/#command-line">command line usage</a>)</li>
-<li>Using ruby-prof will cause your program to run slower (see <a href="#performance">Performance</a> section)</li>
+<li>Using ruby-prof will cause your program to run slower (see <a href="../#performance">Performance</a> section)</li>
 </ul>
 <p>Most of the time, these two caveats are acceptable. But if you need to determine why a program running in production is slow or hung, a sampling profiler will be a better choice. Excellent choices include <a href="https://github.com/tmm1/stackprof">stackprof</a> or <a href="https://rbspy.github.io/">rbspy</a>.</p>
 <p>If you are just interested in memory usage, you may also want to checkout the <a href="https://github.com/SamSaffron/memory_profiler">memory_profiler</a> gem (although ruby-prof provides similar information).</p>

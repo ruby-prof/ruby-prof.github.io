@@ -510,6 +510,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../best-practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../profiling-rails/" class="md-nav__link">
         
   
@@ -800,7 +827,7 @@
 
 
 <h1 id="advanced-usage">Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permanent link">&para;</a></h1>
-<p>This section describes advanced usage of ruby-prof. Additional documentation for every class is also <a href="../#api-documentation">available</a>.</p>
+<p>This section describes advanced usage of ruby-prof. Additional documentation for every class is also <a href="../#api-documentation">available</a>. For workflow guidance, see <a href="../best-practices/">Best Practices</a>.</p>
 <h2 id="profiling-options">Profiling Options<a class="headerlink" href="#profiling-options" title="Permanent link">&para;</a></h2>
 <p>ruby-prof understands the following options when profiling code:</p>
 <p><strong>measure_mode</strong> - What ruby-prof should measure. For more information see the <a href="#measurement-mode">Measurement Mode</a> section.</p>
@@ -831,13 +858,13 @@
 <p>ruby-prof also has the ability to track object allocations. This functionality can be turned on via the track_allocations option:</p>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;ruby-prof&#39;</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span><span class="ss">:track_allocations</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="no">RubyProf</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span><span class="ss">track_allocations</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="o">...</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">end</span>
 </span></code></pre></div>
-<p>Note the <code>RubyProf::ALLOCATIONS</code> measure mode is slightly different than tracking allocations. The measurement mode provides high level information about the number of allocations performed in each method. In contrast, tracking allocations provides detailed information about the type, number, memory usage and location of each allocation. Currently, to see allocations results you must use the <code>RubyProf::GraphHtmlPrinter</code>.</p>
+<p>Note the <code>RubyProf::ALLOCATIONS</code> measure mode is slightly different than tracking allocations. The measurement mode provides high level information about the number of allocations performed in each method. In contrast, tracking allocations provides detailed information about allocation type, count, and source location. Currently, to see allocations results you must use the <code>RubyProf::GraphHtmlPrinter</code>.</p>
 <h2 id="thread-inclusionexclusion">Thread Inclusion/Exclusion<a class="headerlink" href="#thread-inclusionexclusion" title="Permanent link">&para;</a></h2>
-<p>ruby-prof can profile multiple threads. Sometimes this can be overwhelming. For example, assume you want to determine why your tests are running slowly. If you are using minitest, it will run your tests in parallel by spawning tens of worker threads (note to tell minitest to use a single thread set the N environmental variable like this ENV = 0). Thus, ruby-prof provides two options to specify which threads should be profiled:</p>
+<p>ruby-prof can profile multiple threads. Sometimes this can be overwhelming. For example, assume you want to determine why your tests are running slowly. If you are using minitest, it can run tests in parallel by spawning worker threads (to force a single worker, set <code>N=0</code> when running tests). Thus, ruby-prof provides two options to specify which threads should be profiled:</p>
 <p><strong>exclude_threads</strong> - Array of threads which should not be profiled.</p>
 <p><strong>include_threads</strong> - Array of threads which should be profiled. All other threads will be ignored.</p>
 <h2 id="method-exclusion">Method Exclusion<a class="headerlink" href="#method-exclusion" title="Permanent link">&para;</a></h2>
@@ -861,7 +888,7 @@
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">profile</span><span class="o">.</span><span class="n">merge!</span>
 </span></code></pre></div>
 <p>This is also supported in the Rack adapter via the <code>merge_fibers</code> option:</p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="w"> </span><span class="no">Rack</span><span class="o">::</span><span class="no">RubyProf</span><span class="p">,</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;./tmp/profile&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">merge_fibers</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="w"> </span><span class="no">Rack</span><span class="o">::</span><span class="no">RubyProf</span><span class="p">,</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;tmp/profile&quot;</span><span class="p">),</span><span class="w"> </span><span class="ss">merge_fibers</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span>
 </span></code></pre></div>
 <h2 id="saving-results">Saving Results<a class="headerlink" href="#saving-results" title="Permanent link">&para;</a></h2>
 <p>It can be helpful to save the results of a profiling run for later analysis. Results can be saved using Ruby's <a href="https://docs.ruby-lang.org/en/master/Marshal.html">marshal</a> library.</p>
