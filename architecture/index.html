@@ -516,6 +516,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#building-the-call-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the Call Tree
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Call Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Children
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#allocation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -534,6 +573,56 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recursion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-recursive-calls-create-new-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Recursive Calls Create New Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-visits-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Visits Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursion-at-the-methodinfo-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion at the MethodInfo Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -709,6 +798,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#building-the-call-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the Call Tree
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the Call Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Children
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#allocation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -727,6 +855,56 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recursion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-recursive-calls-create-new-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Recursive Calls Create New Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-visits-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Visits Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursion-at-the-methodinfo-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion at the MethodInfo Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -836,19 +1014,155 @@
 <p>These two classes are central to ruby-prof and represent two different views of the same profiling data:</p>
 <ul>
 <li>
-<p><strong>CallTree</strong> records the calling structure — which method called which, forming a graph. Each node has a parent, children, and a reference to its target MethodInfo. A method that is called from two different call sites will have two separate CallTree nodes, each with its own Measurement. Recursive methods create cycles in the graph.</p>
+<p><strong>CallTree</strong> records the calling structure — which method called which, forming a tree. Each node has a parent, children, and a reference to its target MethodInfo. A method that is called from two different call sites will have two separate CallTree nodes, each with its own Measurement. Recursive methods are handled by creating a chain of CallTree nodes (see <a href="#recursion">Recursion</a> below).</p>
 </li>
 <li>
 <p><strong>MethodInfo</strong> represents a single method regardless of where it was called from. It aggregates data across all call sites. Each MethodInfo holds a CallTrees collection that links back to every CallTree node that invoked that method, providing both caller and callee information.</p>
 </li>
 </ul>
 <p>This separation is what allows ruby-prof to generate both call graph reports (which show calling relationships) and flat reports (which show per-method totals).</p>
+<h2 id="building-the-call-tree">Building the Call Tree<a class="headerlink" href="#building-the-call-tree" title="Permanent link">&para;</a></h2>
+<p>This section describes how the call tree is constructed during profiling.</p>
+<p>Consider profiling this code:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="n">validate</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">save</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">end</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">save</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="n">validate</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="n">write</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">end</span>
+</span></code></pre></div>
+<p>The resulting CallTree looks like:</p>
+<pre class="mermaid"><code>graph TD
+    A{{"[global]"}} --&gt;|child| B{{"process"}}
+    B --&gt;|child| C{{"validate"}}
+    B --&gt;|child| D{{"save"}}
+    D --&gt;|child| E{{"validate"}}
+    D --&gt;|child| F{{"write"}}
+
+    B -.-&gt;|parent| A
+    C -.-&gt;|parent| B
+    D -.-&gt;|parent| B
+    E -.-&gt;|parent| D
+    F -.-&gt;|parent| D</code></pre>
+<p>Notice that <code>validate</code> appears as two separate CallTree nodes — one under <code>process</code> and one under <code>save</code> — because it was called from two different call sites. Each has its own parent and its own Measurement. Both nodes reference the same <code>validate</code> MethodInfo, which aggregates the data across both call sites.</p>
+<p>The following diagram shows both views together. CallTree nodes (hexagons) reference their target MethodInfo (rectangles) via dashed arrows:</p>
+<pre class="mermaid"><code>graph TD
+    classDef calltree fill:#E8F4FD,stroke:#2E86C1
+    classDef methodinfo fill:#FADBD8,stroke:#E74C3C
+
+    CT1{{"[global]"}}:::calltree --&gt; CT2{{"process"}}:::calltree
+    CT2 --&gt; CT3{{"validate"}}:::calltree
+    CT2 --&gt; CT4{{"save"}}:::calltree
+    CT4 --&gt; CT5{{"validate"}}:::calltree
+    CT4 --&gt; CT6{{"write"}}:::calltree
+
+    CT1 -.-&gt;|target| M1["[global]"]:::methodinfo
+    CT2 -.-&gt;|target| M2["process"]:::methodinfo
+    CT3 -.-&gt;|target| M3["validate"]:::methodinfo
+    CT4 -.-&gt;|target| M4["save"]:::methodinfo
+    CT5 -.-&gt;|target| M3
+    CT6 -.-&gt;|target| M5["write"]:::methodinfo
+
+    M3 -.-&gt;|call_trees| CT3
+    M3 -.-&gt;|call_trees| CT5</code></pre>
+<p>Both <code>validate</code> CallTree nodes point to the same <code>validate</code> MethodInfo via <code>target</code>. The MethodInfo points back to its CallTree nodes via <code>call_trees</code> — a flat array of every CallTree node that invoked this method. From this array, <code>callers</code> and <code>callees</code> are derived: <code>callers</code> walks each node's parent, and <code>callees</code> walks each node's children. Both are aggregated by method to produce a single entry per caller or callee method.</p>
+<h3 id="parents">Parents<a class="headerlink" href="#parents" title="Permanent link">&para;</a></h3>
+<p>Each CallTree node has exactly one parent, set at creation. When a method call event fires, the profiler determines the parent from the current frame on the stack:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">parent_call_tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">call_tree</span><span class="p">;</span>
+</span></code></pre></div>
+<p>The parent is the CallTree node that was active (top of the stack) when this method was called. The root CallTree node for each thread has no parent.</p>
+<h3 id="children">Children<a class="headerlink" href="#children" title="Permanent link">&para;</a></h3>
+<p>A CallTree node's children are stored in a hash table keyed by method. The profiler looks up the method in the current parent's children. If a child already exists for that method, the existing CallTree node is <strong>reused</strong> and its <code>called</code> count increments. Otherwise a new node is created:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">call_tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">call_tree_table_lookup</span><span class="p">(</span><span class="n">parent_call_tree</span><span class="o">-&gt;</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">call_tree</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">call_tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prof_call_tree_create</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">parent_call_tree</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">prof_call_tree_add_child</span><span class="p">(</span><span class="n">parent_call_tree</span><span class="p">,</span><span class="w"> </span><span class="n">call_tree</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>This means each parent has <strong>one</strong> child CallTree per method. For example, if <code>foo</code> calls <code>bar</code> ten times, there is a single <code>bar</code> CallTree node under <code>foo</code> with <code>called: 10</code>.</p>
 <h2 id="allocation">Allocation<a class="headerlink" href="#allocation" title="Permanent link">&para;</a></h2>
 <p>When allocation tracking is enabled, each MethodInfo records the objects it allocated. An Allocation tracks the class of object created, the source location, and the count.</p>
 <h2 id="memory-management">Memory Management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h2>
 <p>The Profile object is responsible for managing the memory of its child objects, which are C structures. When a Profile is garbage collected, it recursively frees all its objects. In the class diagram, composition relationships (filled diamond) indicate ownership — a Profile frees its Threads, Threads free their CallTrees and MethodInfo instances, and so on.</p>
 <p>ruby-prof keeps a Profile alive as long as there are live references to any of its MethodInfo or CallTree objects. This is done via Ruby's GC mark phase: CallTree instances mark their associated MethodInfo, and MethodInfo instances mark their owning Profile.</p>
 <p>Starting with version 1.5, it is possible to create Thread, CallTree and MethodInfo instances from Ruby (this was added to support testing). These Ruby-created objects are owned by Ruby's garbage collector rather than the C extension. An internal ownership flag on each instance tracks who is responsible for freeing it.</p>
+<h2 id="recursion">Recursion<a class="headerlink" href="#recursion" title="Permanent link">&para;</a></h2>
+<p>The call tree handles recursion naturally — each recursive call has a different parent, so new nodes are created at each level just like any other method call. The only special handling is in timing calculation, where care is needed to avoid double-counting.</p>
+<h3 id="how-recursive-calls-create-new-nodes">How Recursive Calls Create New Nodes<a class="headerlink" href="#how-recursive-calls-create-new-nodes" title="Permanent link">&para;</a></h3>
+<p>Consider a simple recursive method:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">simple</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nb">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="n">simple</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">end</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">simple</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Each recursive call to <code>simple</code> has a different parent CallTree node, so the lookup in the parent's children misses and a new node is created at each level:</p>
+<pre class="mermaid"><code>graph TD
+    classDef calltree fill:#E8F4FD,stroke:#2E86C1
+    classDef methodinfo fill:#FADBD8,stroke:#E74C3C
+
+    A{{"[global]"}}:::calltree --&gt; B{{"simple"}}:::calltree
+    B --&gt; C{{"sleep"}}:::calltree
+    B --&gt; D{{"simple"}}:::calltree
+    D --&gt; E{{"sleep"}}:::calltree
+    D --&gt; F{{"simple"}}:::calltree
+    F --&gt; G{{"sleep"}}:::calltree
+
+    B -.-&gt; A
+    C -.-&gt; B
+    D -.-&gt; B
+    E -.-&gt; D
+    F -.-&gt; D
+    G -.-&gt; F
+
+    B -.-&gt; M["simple"]:::methodinfo
+    D -.-&gt; M
+    F -.-&gt; M</code></pre>
+<p>The CallTree is always acyclic — each recursive call creates a new node at a deeper level. However, there is a single <code>simple</code> MethodInfo (red rectangle at the bottom of the diagram), and each CallTree node points to it.</p>
+<h3 id="the-visits-counter">The Visits Counter<a class="headerlink" href="#the-visits-counter" title="Permanent link">&para;</a></h3>
+<p>Both CallTree and MethodInfo have a <code>visits</code> field that tracks how many times that node or method is currently on the stack. This counter is incremented on method entry and decremented on method exit:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Method entry (prof_frame_push):</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">visits</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">visits</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">visits</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">// Method exit (prof_frame_pop):</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">visits</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">visits</span><span class="o">--</span><span class="p">;</span>
+</span></code></pre></div>
+<p>The MethodInfo <code>visits</code> counter serves two purposes:</p>
+<ol>
+<li>
+<p>Detecting recursion — if <code>method-&gt;visits &gt; 0</code> when a method is entered, the method is currently an ancestor of itself in the call stack and is marked recursive.</p>
+</li>
+<li>
+<p>Correct total_time accounting — total time is only added to the Measurement when a node's <code>visits</code> drops back to 1, meaning it is the outermost invocation:</p>
+</li>
+</ol>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Only accumulate total_time at the outermost visit</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">visits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">measurement</span><span class="o">-&gt;</span><span class="n">total_time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">total_time</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">visits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">call_tree</span><span class="o">-&gt;</span><span class="n">method</span><span class="o">-&gt;</span><span class="n">measurement</span><span class="o">-&gt;</span><span class="n">total_time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">total_time</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Without this guard, total time would be double-counted. Consider <code>simple(2)</code> with 1-second sleeps. The outermost call takes ~3 seconds total, the middle call ~2 seconds, and the innermost ~1 second. Naively summing all three would give 6 seconds, but the actual elapsed time is only 3 seconds. By only recording total_time at the outermost visit, the MethodInfo correctly reports 3 seconds.</p>
+<h3 id="recursion-at-the-methodinfo-level">Recursion at the MethodInfo Level<a class="headerlink" href="#recursion-at-the-methodinfo-level" title="Permanent link">&para;</a></h3>
+<p>At the MethodInfo level, recursive methods create cycles. A recursive <code>simple</code> method has itself as both a caller and a callee:</p>
+<pre class="mermaid"><code>graph TD
+    classDef methodinfo fill:#FADBD8,stroke:#E74C3C
+    A["global"]:::methodinfo --&gt;|"calls"| B["simple"]:::methodinfo
+    B --&gt;|"calls"| C["sleep"]:::methodinfo
+    B --&gt;|"calls"| B</code></pre>
+<p>This is why MethodInfo has a <code>recursive?</code> flag — printers that operate on MethodInfo (such as the graph printer) need to be aware of these cycles. However, the underlying CallTree structure is always a tree with no structural cycles.</p>
 
 
 
